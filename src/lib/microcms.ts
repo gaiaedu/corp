@@ -352,192 +352,16 @@ export function getFileUrl(fileOrUrl?: MicroCMSFile | string | null): string {
 }
 
 // ============================================================================
-// 初期モックデータ（microCMS API未設定時・ローカル確認用フォールバック）
+// 旧本番サーバーから抽出した全データ（microCMS 側のデータと自動マージ／フォールバック）
 // ============================================================================
 
-const MOCK_SLIDERS: SliderItem[] = [
-  {
-    id: 'slider-1',
-    old_id: 1,
-    label: 'メインスライダー1',
-    image: { url: '/front/images/slider_1.jpg' },
-    url: '/service/table-1/product/1/',
-    order: 1,
-  },
-  {
-    id: 'slider-2',
-    old_id: 2,
-    label: 'メインスライダー2',
-    image: { url: '/front/images/slider_2.jpg' },
-    url: '',
-    order: 2,
-  },
-  {
-    id: 'slider-3',
-    old_id: 3,
-    label: 'メインスライダー3',
-    image: { url: '/front/images/slider_3.jpg' },
-    url: '',
-    order: 3,
-  },
-];
+import productionData from '../data/production_data.json';
 
-const MOCK_CATEGORIES: ProductCategoryItem[] = [
-  {
-    id: 'cat-1',
-    old_id: 1,
-    name: 'ノートPC 収納',
-    group: 'table',
-    order: 1,
-    body: 'モニターやノートPC等のICT機器を収納・展開出来るIT機器収納型の会議テーブルカテゴリです。\n会議室のレイアウトや用途に合わせて最適な収納方式をご提案いたします。',
-    list_image: { url: '/service/product/images/table/it_01.jpg' },
-    main_image: { url: '/service/product/images/service_mv.jpg' },
-  },
-  {
-    id: 'cat-2',
-    old_id: 2,
-    name: 'モニタ収納',
-    group: 'table',
-    order: 2,
-    body: '天板内に液晶モニターをすっきり格納できるモニタ収納会議テーブルシリーズです。',
-    list_image: { url: '/service/product/images/table/it_02.jpg' },
-    main_image: { url: '/service/product/images/service_mv.jpg' },
-  },
-  {
-    id: 'cat-3',
-    old_id: 3,
-    name: 'ノートPC 電動収納',
-    group: 'table',
-    order: 3,
-    body: 'スイッチひとつで昇降・展開が可能な電動収納モデルです。',
-    list_image: { url: '/service/product/images/table/it_03.jpg' },
-    main_image: { url: '/service/product/images/service_mv.jpg' },
-  },
-  {
-    id: 'cat-4',
-    old_id: 4,
-    name: 'モニタ 電動収納',
-    group: 'table',
-    order: 4,
-    body: '大型モニターを電動リフトで昇降できるエグゼクティブ会議室向けシリーズです。',
-    list_image: { url: '/service/product/images/table/it_04.jpg' },
-    main_image: { url: '/service/product/images/service_mv.jpg' },
-  },
-  {
-    id: 'cat-5',
-    old_id: 5,
-    name: 'オフィス向けファニチャー',
-    group: 'other',
-    order: 1,
-    body: '機能性の高いオフィス向け家具を中心にラインナップ。いつも利用する家具にガイアエデュケーションならではの機能を+ONE。',
-    list_image: { url: '/service/product/images/other/other_01.jpg' },
-    main_image: { url: '/service/product/images/other/main.jpg' },
-  },
-  {
-    id: 'cat-6',
-    old_id: 6,
-    name: 'PC保管庫・収納キャビネット',
-    group: 'furniture',
-    order: 1,
-    body: 'ノートPC収納に特化した製品ラインナップ。管理方法も壁面、移動型と豊富でコストパフォーマンスに優れたシンプルモデル。',
-    list_image: { url: '/service/product/images/furniture/pc_01.jpg' },
-    main_image: { url: '/service/product/images/furniture/main.jpg' },
-  },
-  {
-    id: 'cat-7',
-    old_id: 7,
-    name: 'OEM・特注開発製品',
-    group: 'oem',
-    order: 1,
-    body: '木製から金属製・樹脂製等幅広いオリジナル製品を企画開発。メーカー特定製品に合わせニーズを吸い上げたオリジナル製品を製作します。',
-    list_image: { url: '/service/product/images/oem/oem_01.jpg' },
-    main_image: { url: '/service/product/images/oem/main.jpg' },
-  },
-];
-
-const MOCK_PRODUCTS: ProductItem[] = [
-  {
-    id: 'prod-1',
-    old_id: 1,
-    name: 'IT機器収納会議テーブル スタンダードモデル',
-    model: 'G200124',
-    category: MOCK_CATEGORIES[0],
-    order: 1,
-    body: '普段は通常のフラップテーブル・会議デスクとして使用でき、会議時にはノートPCやモニターを素早く展開できるIT機器収納会議テーブルです。\nセキュリティロック機構を備え、機器の盗難防止と配線保護を両立します。',
-    list_image: { url: '/service/product/images/table/it_01.jpg' },
-    list_image_caption: 'ノートPC・モニターを天板内にすっきり収納できるスタンダードモデル',
-    main_image: { url: '/service/product/images/detail_mv.jpg' },
-    descriptions: [
-      { title: '天板カラー', body: 'ダークウッド／ホワイト／ナチュラル（特注色対応可）' },
-      { title: '収納可能機器', body: 'ノートPC（最大15.6インチ）または液晶モニター（最大24インチ）' },
-      { title: 'セキュリティ', body: 'シリンダー錠標準装備（マスターキー対応）' },
-    ],
-    functions: [
-      {
-        title: 'フラップ式天板収納機構',
-        image: { url: '/service/product/images/detail_img01.jpg' },
-        image_caption: '簡単な操作で天板を開閉し、内部のノートPCやモニターを展開できます。',
-      },
-      {
-        title: 'ケーブルマネジメント設計',
-        image: { url: '/service/product/images/detail_img02.jpg' },
-        image_caption: '電源タップやLAN配線をデスク内部に隠蔽し、足元や天板上の配線をすっきり整理します。',
-      },
-    ],
-    options: [
-      {
-        title: 'スマートコンセント増設ユニット',
-        image: { url: '/service/product/images/detail_img01.jpg' },
-        image_caption: '天板手元にACコンセント・HDMI端子・USB充電ポートを増設可能です。',
-      },
-      {
-        title: '連結天板オプション',
-        image: { url: '/service/product/images/detail_img02.jpg' },
-        image_caption: 'レイアウトに合わせてデスク同士を連結し、大型会議テーブルとして構成できます。',
-      },
-    ],
-    specs: [
-      { title: '外形寸法', body: 'W1600 × D800 × H720 mm（2人用）／ W800 × D800 × H720 mm（1人用）' },
-      { title: '天板材質', body: '高圧メラミン化粧板・ポストフォーム加工' },
-      { title: '脚部材質', body: 'スチール粉体塗装仕上げ（アジャスターまたはロック付キャスター選択可）' },
-    ],
-  },
-];
-
-const MOCK_WORKS: WorkItem[] = [
-  {
-    id: 'work-1',
-    old_id: 1,
-    label: 'オフィス会議室 導入事例',
-    category: 'table',
-    order: 1,
-    body: '企業様の会議室リニューアルに伴い、IT機器収納会議テーブルを導入いただきました。\n通常時は広い執務・会議スペースとして活用し、Web会議やプレゼンテーション時には即座にモニターを展開できるスマートな会議空間を実現しています。',
-    list_image: { url: '/work/images/detail_img01.jpg' },
-    list_image_caption: 'IT機器収納会議テーブルによるスマートな会議室レイアウト事例',
-    main_image: { url: '/work/images/detail_mv.jpg' },
-    main_image_caption: '導入後の会議室全景',
-    sub_images: [
-      { image: { url: '/work/images/detail_img01.jpg' }, caption: '機器展開時の様子' },
-      { image: { url: '/work/images/detail_img02.jpg' }, caption: '機器収納時のフラットな天板' },
-    ],
-    products: [MOCK_PRODUCTS[0]],
-    publishedAt: '2020-10-07T00:00:00.000Z',
-  },
-];
-
-const MOCK_INFORMATION: InformationItem[] = [
-  {
-    id: 'info-1',
-    old_id: 1,
-    title: 'WEBサイトをリニューアルオープンいたしました。',
-    category: 'お知らせ',
-    published_date: '2020-10-07T00:00:00.000Z',
-    publishedAt: '2020-10-07T00:00:00.000Z',
-    body: 'GAIA EDUCATION for CORPORATION のWEBサイトをご覧いただき誠にありがとうございます。\n法人・官公庁向けICTファニチャーおよびOEM製品の情報を順次発信してまいります。',
-    main_image: { url: '/information/images/test.jpg' },
-    main_image_caption: 'GAIA EDUCATION for CORPORATION',
-  },
-];
+const LEGACY_SLIDERS = (productionData.sliders || []) as unknown as SliderItem[];
+const LEGACY_INFORMATION = (productionData.information || []) as unknown as InformationItem[];
+const LEGACY_CATEGORIES = (productionData.product_categories || []) as unknown as ProductCategoryItem[];
+const LEGACY_PRODUCTS = (productionData.products || []) as unknown as ProductItem[];
+const LEGACY_WORKS = (productionData.works || []) as unknown as WorkItem[];
 
 // ============================================================================
 // microCMS REST API フェッチ関数（全件取得対応）
@@ -602,11 +426,33 @@ async function fetchAllFromMicroCMS<T>(
   }
 }
 
+/**
+ * microCMS 側のデータと旧本番DBデータをマージするヘルパー
+ * - microCMS に全データ移行後は microCMS 側のデータが優先され、
+ * - 移行途中または新規記事だけ microCMS に入れた場合でも、旧DBの既存コンテンツが消えずに共存・上書き更新される
+ */
+function mergeWithLegacy<T extends MicroCMSBaseContent>(cmsItems: T[] | null, legacyItems: T[]): T[] {
+  if (!cmsItems || cmsItems.length === 0) {
+    return [...legacyItems];
+  }
+  const cmsSlugSet = new Set<string>();
+  for (const item of cmsItems) {
+    cmsSlugSet.add(item.id);
+    if (typeof item.old_id === 'number') {
+      cmsSlugSet.add(String(item.old_id));
+    }
+  }
+  const remainingLegacy = legacyItems.filter(
+    (leg) => !cmsSlugSet.has(leg.id) && !(typeof leg.old_id === 'number' && cmsSlugSet.has(String(leg.old_id)))
+  );
+  return [...cmsItems, ...remainingLegacy];
+}
+
 /** ① スライダー一覧取得 */
 export async function getSliders(): Promise<SliderItem[]> {
   const items = await fetchAllFromMicroCMS<SliderItem>('sliders', { orders: 'order,publishedAt' });
-  if (!items || items.length === 0) return MOCK_SLIDERS;
-  return items.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
+  const merged = mergeWithLegacy(items, LEGACY_SLIDERS);
+  return merged.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
 }
 
 /** ② お知らせ一覧取得 */
@@ -614,8 +460,8 @@ export async function getInformationList(): Promise<InformationItem[]> {
   const items = await fetchAllFromMicroCMS<InformationItem>('information', {
     orders: '-published_date,-publishedAt',
   });
-  if (!items || items.length === 0) return MOCK_INFORMATION;
-  return items.sort((a, b) => {
+  const merged = mergeWithLegacy(items, LEGACY_INFORMATION);
+  return merged.sort((a, b) => {
     const dateA = a.published_date || a.publishedAt || '';
     const dateB = b.published_date || b.publishedAt || '';
     return dateB.localeCompare(dateA);
@@ -627,8 +473,8 @@ export async function getProductCategories(): Promise<ProductCategoryItem[]> {
   const items = await fetchAllFromMicroCMS<ProductCategoryItem>('product_categories', {
     orders: 'order,publishedAt',
   });
-  if (!items || items.length === 0) return MOCK_CATEGORIES;
-  return items.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
+  const merged = mergeWithLegacy(items, LEGACY_CATEGORIES);
+  return merged.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
 }
 
 /** ④ 製品一覧取得 */
@@ -637,8 +483,8 @@ export async function getProducts(): Promise<ProductItem[]> {
     orders: 'order,publishedAt',
     depth: '2',
   });
-  if (!items || items.length === 0) return MOCK_PRODUCTS;
-  return items.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
+  const merged = mergeWithLegacy(items, LEGACY_PRODUCTS);
+  return merged.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
 }
 
 /** ⑤ 導入事例一覧取得 */
@@ -647,7 +493,7 @@ export async function getWorks(): Promise<WorkItem[]> {
     orders: 'order,-publishedAt',
     depth: '2',
   });
-  if (!items || items.length === 0) return MOCK_WORKS;
-  return items.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
+  const merged = mergeWithLegacy(items, LEGACY_WORKS);
+  return merged.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
 }
 
