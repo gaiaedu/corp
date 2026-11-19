@@ -1,0 +1,42 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { withBase } from '../../lib/microcms';
+---
+<MainLayout
+  title="送信完了 | お問い合わせ | GAIA EDUCATION for CORPORATION | 株式会社ガイアエデュケーション"
+  keywords="送信完了,お問い合わせ,パソコンデスク,ICT,オフィス,官公庁,モニタ昇降,PC収納,PC保管,PCセキュリティ,ガイアエデュケーション,コーポレーション,GAIA EDUCATION for CORPORATION"
+  description="GAIA EDUCATION for CORPORATIONへのお問い合わせです。"
+  cssFiles={[
+    '/inquiry/detail.css',
+    '/function/css/table.css',
+    '/function/css/local/list05.css',
+  ]}
+  pageTitleSmall="お問い合わせ"
+  pageTitleEn="INQUIRY"
+  hideTwoColumnContainer={true}
+>
+  <Fragment slot="breadCrumb">
+    <li class="breadcrumb-item"><a href={withBase('/inquiry/')}>お問い合わせ</a></li>
+    <li class="breadcrumb-item">送信完了</li>
+  </Fragment>
+
+  <Fragment slot="wideFreeArea">
+    <section>
+      <div class="container-fluid">
+        <div class="container">
+          <div class="h_flat">
+            <h2>お問い合わせ 送信完了</h2>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p>この度はお問い合わせ頂きましてありがとうございます。</p>
+              <p>ご連絡は受付順に正確かつ迅速に対応させていただいておりますが、場合によってはお時間をいただく場合がございます。<br>
+                ご迷惑をおかけいたしますが、よろしくご理解くださいますようお願い申し上げます。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </Fragment>
+</MainLayout>
+

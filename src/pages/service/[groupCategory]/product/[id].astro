@@ -101,7 +101,8 @@ const sites = (model.sites || []).filter((s) => s.url);
 const links = (model.links || []).filter((l) => l.code);
 
 const productInquiryLabel = `${model.name}／${model.model}`;
-const inquiryUrl = withBase(`/inquiry/?product=${encodeURIComponent(productInquiryLabel)}&product_name=${encodeURIComponent(model.name)}&product_model=${encodeURIComponent(model.model)}`);
+const bownowQueryKey = import.meta.env.PUBLIC_BOWNOW_PRODUCT_QUERY_KEY || '_bq_text_field-20261119135348948~';
+const inquiryUrl = withBase(`/inquiry/?${bownowQueryKey}=${encodeURIComponent(productInquiryLabel)}&product=${encodeURIComponent(productInquiryLabel)}`);
 ---
 <MainLayout
   title={title}
