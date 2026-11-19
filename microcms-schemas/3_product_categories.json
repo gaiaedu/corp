@@ -1,0 +1,92 @@
+{
+  "apiFields": [
+    {
+      "fieldId": "old_id",
+      "name": "旧ID",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "fieldId": "name",
+      "name": "製品カテゴリー名",
+      "kind": "text",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "fieldId": "group",
+      "name": "カテゴリー（親グループ）",
+      "kind": "select",
+      "required": true,
+      "multipleSelect": false,
+      "selectItems": [
+        {
+          "id": "grp_table1",
+          "value": "table"
+        },
+        {
+          "id": "grp_other2",
+          "value": "other"
+        },
+        {
+          "id": "grp_furni3",
+          "value": "furniture"
+        },
+        {
+          "id": "grp_oem004",
+          "value": "oem"
+        },
+        {
+          "id": "grp_temp05",
+          "value": "temp"
+        }
+      ]
+    },
+    {
+      "fieldId": "order",
+      "name": "並び順",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "fieldId": "body",
+      "name": "本文",
+      "kind": "textArea",
+      "required": false
+    },
+    {
+      "fieldId": "list_image",
+      "name": "一覧画像（W1080xH528px）",
+      "kind": "media",
+      "required": false
+    },
+    {
+      "fieldId": "list_image_caption",
+      "name": "一覧説明",
+      "kind": "text",
+      "required": false,
+      "isUnique": false
+    },
+    {
+      "fieldId": "main_image",
+      "name": "メイン画像（W1110以上xH任意px）",
+      "kind": "media",
+      "required": false
+    },
+    {
+      "fieldId": "main_image_caption",
+      "name": "メイン画像キャプション",
+      "kind": "text",
+      "required": false,
+      "isUnique": false
+    },
+    {
+      "fieldId": "note",
+      "name": "メモ",
+      "kind": "textArea",
+      "required": false
+    }
+  ],
+  "customFields": []
+}
+

@@ -1,0 +1,376 @@
+/* CSS Document */
+/* ##################################################################### */
+/*	EyewillStrap Ver.1.0
+/* ##################################################################### */
+.pageTitleArea{
+/*    background-color: transparent;*/
+    padding-left: 0px;
+    padding-right: 0px;
+    }
+
+
+.navbar-nav li.list03 .nav-link {
+    color: #fff;
+    border-bottom: 2px solid #148acc;;
+    padding-bottom: 0.7rem;
+}
+/* artwork openclose
+---------------------------------------------------------*/
+ .boxitem {
+  opacity: 0;
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.boxitem{
+  -webkit-animation: openclose 0.3s ease 0.1s 1 forwards;
+  animation: openclose 0.3s ease 0.1s 1 forwards;
+}
+
+@-webkit-keyframes openclose {
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+@keyframes openclose {
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+.ic1{
+    padding-top: 7px;
+    padding-left: 20px;
+}
+
+/* input アコーディオン
+------------------------------------------------------------------------------*/
+.product-nav{
+	position: relative;
+	margin-bottom: 60px;
+}
+
+.product-nav h2{
+	color: #fff;
+	font-size: 1.1rem;
+	margin-top: 0.5rem;
+	margin-bottom: 0px;
+	padding: 10px;
+	background-color: #3f3f3f;
+	z-index: 100!important;
+}
+.product-nav_inn{
+	padding: 0px 15px 30px;
+	background-color: #3f3f3f;
+}
+.product-nav ul{
+	padding: 0px;
+	margin: 0px;
+}
+.product-nav .ms32{
+background-color: #fff;
+	margin-bottom: 0.5rem;
+	line-height: 1;
+}
+/*label*/
+.ac-box label{
+min-width: 78px;
+text-align: center;
+background: #3f3f3f;
+position: relative;
+display: block;
+height: 78px;
+        border-radius: 0 0 78px 78px;
+        -moz-border-radius: 0 0 78px 78px;
+        -webkit-border-radius: 0 0 78px 78px;
+cursor: pointer;
+color: #fff;
+transition: all 0.5s;
+padding-top: 10px;
+z-index: 1!important;    
+}
+
+
+/*チェックを隠す*/
+.ac-box input{
+display: none;
+}
+
+/*チェックのアイコン（↓）*/
+.ac-box label:after{
+margin-top: -20px;
+color: #fff;
+content: url("../function/images/arrow_op_click.png");
+z-index: 6;  	
+}
+
+/*チェックのアイコン（↑）*/
+.ac-box input:checked ~ label::after {
+color: #fff;
+content: url("../function/images/arrow_cl_click.png");
+z-index: 6; 	
+}
+@media (min-width: 768px) {
+.product-nav  {
+	background-color: transparent;
+	margin-bottom: 0px;
+	}	
+.product-nav_inn{
+	padding: 0px 0px 20px;
+	background-color: transparent;
+}
+.product-nav .collapse:not(.show) {
+  display: block;
+	background-color: transparent;
+	}
+}
+
+/*---------------------------------------------------------------------------*/
+.oca{
+    text-align: center;
+    position: absolute;
+    width: 78px;
+	height: 78px;
+	display: block;
+    margin:0 auto;
+    bottom: -40px;
+    right:0;
+    left: 0;
+}
+/*.femaile-plasty-mv{
+   background-image: url( "images/kv_bg_pc.jpg");
+    background-position: right 30% top 0;
+    background-size: cover;
+    padding-top: 300px;
+    padding-bottom: 30px;
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top:21px!important;
+}
+
+.femaile-plasty-mv .pageTitleAreaMv .t_icon{
+    background-color:  rgba(255,123,115,0.5);
+    margin-bottom: 20px;
+}
+
+
+.femaile-plasty-mv .pageTitleAreaMv h1{
+        text-shadow:none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.care{
+     background-image: url("images/con02_bg.jpg");
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-size: cover;   
+}
+.nayami{
+    background-image: url("images/con03_bg.jpg");
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.nayami ul{
+    padding: 20px 20px 10px;
+    line-height: 2.2;
+}
+.nayami ul li{
+    display: inline-block;
+}
+
+.fp_menu{
+    background-color: #fff1f0;
+}
+.shadowM{
+    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.10);
+}
+
+footer{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+
+.block5 section{
+	padding: 50px 0;
+	border-bottom: solid 1px #ccc;
+}
+.block5 section:first-of-type{
+	padding: 0px 0 50px;
+	margin-top: -30px;
+}
+.block5 section:last-child{
+	border-bottom: none;
+}
+.block5 section h3,
+.block5 section h2{
+	text-align: center;
+}
+*/
+/*.block5 section .step h3{
+	text-align: left;
+}*/
+
+
+
+
+
+
+/* 5 Columns */
+
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-xs-15 {
+    width: 20%;
+    float: left;
+}
+@media (min-width: 768px) {
+    .col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 1200px) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+/* /.5 Columns */
+
+
+
+
+
+.block5 .area{
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+.block5 h3{
+color: #ff7b73;
+}
+
+
+.point5 h4{
+	color: #ff7b73;
+	text-align: left!important;
+	padding-top: 10px;
+}
+.point5 .nam{
+	color: #ff7b73;
+	padding-right: 10px;
+}
+.block5 section .point5 h3{
+	text-align: left;
+	/*color: #000;*/
+}
+.block5 section h4{
+	padding-top: 10px;
+}
+.message{
+	padding: 30px 30px 20px 40px;
+border: 1px solid #ededed;
+}
+.message h4{
+	padding-bottom: 30px;
+	text-align: left;
+}
+.message img{
+	padding-bottom: 20px;
+}
+/* ===================================================================== */
+/*	スマホ基本設定
+/* ===================================================================== */
+
+@media (min-width: 480px) {
+/* ##################################################################### */
+/*	タブレット小
+/* ##################################################################### */
+.product-nav h2{
+	font-size: 1.5rem;
+}	
+.femaile-plasty-mv .pageTitleAreaMv .t_icon{
+    background-color:  rgba(0,0,0,0.0);
+    margin-bottom: 20px;
+}
+.femaile-plasty-mv .pageTitleAreaMv h1{
+    text-shadow:white 1px 1px 10px, white -1px 1px 10px,
+    white 1px -1px 10px, white -1px -1px 10px;
+    color: #000;
+}
+    
+    
+}
+@media (min-width: 576px) {
+/* ##################################################################### */
+/*	タブレット小
+/* ##################################################################### */
+
+}
+@media (min-width: 768px) {
+/* ##################################################################### */
+/*	タブレット
+/* ##################################################################### */
+.care{
+    background-position: left -300px top;
+}
+    .femaile-plasty-mv{    
+    background-position: center top;
+    background-repeat: no-repeat;
+    /*padding-top: 177px;*/
+    padding-top: 200px;
+    padding-bottom: 115px;
+
+}
+    
+}
+
+@media (min-width: 992px) {
+/* ##################################################################### */
+/*	タブレット大
+/* ##################################################################### */
+/* ===================================================================== */
+/*	
+/* ===================================================================== */
+
+
+}
+
+@media (min-width: 1200px) {
+/* ##################################################################### */
+/*	PC　コンピュータ
+/* ##################################################################### */
+/* ===================================================================== */
+/*	
+/* ===================================================================== */
+.care{
+    background-position: left top;
+}
+
+}
+
+
+

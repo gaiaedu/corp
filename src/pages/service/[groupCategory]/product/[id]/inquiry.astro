@@ -1,0 +1,74 @@
+---
+import {
+  getProductCategories,
+  getProducts,
+  normalizeGroupKey,
+  getSlug,
+  withBase,
+  type ProductCategoryItem,
+  type ProductItem,
+} from '../../../../../lib/microcms';
+
+export async function getStaticPaths() {
+  const allCategories = await getProductCategories();
+  const allProducts = await getProducts();
+
+  const categoryMap = new Map<string, ProductCategoryItem>();
+  for (const cat of allCategories) {
+    categoryMap.set(cat.id, cat);
+    categoryMap.set(getSlug(cat), cat);
+  }
+
+  const paths = [];
+  for (const product of allProducts) {
+    const cat =
+      (product.category && (categoryMap.get(product.category.id) || product.category)) ||
+      allCategories[0];
+    const gKey = normalizeGroupKey(cat?.group);
+    const catSlug = getSlug(cat);
+    const prodSlug = getSlug(product);
+
+    const groupCategoryCombos = new Set<string>([`${gKey}-${catSlug}`]);
+    if (cat && cat.id !== catSlug) {
+      groupCategoryCombos.add(`${gKey}-${cat.id}`);
+    }
+
+    const prodSlugs = new Set<string>([prodSlug]);
+    if (product.id !== prodSlug) {
+      prodSlugs.add(product.id);
+    }
+
+    for (const gc of groupCategoryCombos) {
+      for (const ps of prodSlugs) {
+        paths.push({
+          params: { groupCategory: gc, id: ps },
+          props: { model: product },
+        });
+      }
+    }
+  }
+  return paths;
+}
+
+interface Props {
+  model: ProductItem;
+}
+
+const { model } = Astro.props;
+const productLabel = `${model.name}／${model.model}`;
+const redirectUrl = withBase(`/inquiry/?product=${encodeURIComponent(productLabel)}&product_name=${encodeURIComponent(model.name)}&product_model=${encodeURIComponent(model.model)}`);
+---
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="refresh" content={`0;url=${redirectUrl}`} />
+  <title>お問い合わせへ移動中... | GAIA EDUCATION for CORPORATION</title>
+  <script is:inline define:vars={{ redirectUrl }}>
+    window.location.replace(redirectUrl);
+  </script>
+</head>
+<body>
+  <p><a href={redirectUrl}>お問い合わせフォームへ移動しています...</a></p>
+</body>
+</html>

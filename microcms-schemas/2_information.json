@@ -1,0 +1,223 @@
+{
+  "apiFields": [
+    {
+      "idValue": "infOldId01",
+      "fieldId": "old_id",
+      "name": "旧ID",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "idValue": "infTitle02",
+      "fieldId": "title",
+      "name": "タイトル",
+      "kind": "text",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "idValue": "infCateg03",
+      "fieldId": "category",
+      "name": "カテゴリー",
+      "kind": "select",
+      "required": true,
+      "multipleSelect": false,
+      "selectItems": [
+        {
+          "id": "info_news1",
+          "value": "お知らせ"
+        },
+        {
+          "id": "info_impt2",
+          "value": "重要"
+        },
+        {
+          "id": "info_medi3",
+          "value": "メディア"
+        }
+      ]
+    },
+    {
+      "idValue": "infPubDt04",
+      "fieldId": "published_date",
+      "name": "表示日付",
+      "kind": "date",
+      "required": false
+    },
+    {
+      "idValue": "infBody005",
+      "fieldId": "body",
+      "name": "本文",
+      "kind": "textArea",
+      "required": false
+    },
+    {
+      "idValue": "infMImg006",
+      "fieldId": "main_image",
+      "name": "メイン画像",
+      "kind": "media",
+      "required": false
+    },
+    {
+      "idValue": "infMCap007",
+      "fieldId": "main_image_caption",
+      "name": "メイン画像キャプション",
+      "kind": "text",
+      "required": false,
+      "isUnique": false
+    },
+    {
+      "idValue": "infYtId008",
+      "fieldId": "youtube_id",
+      "name": "Youtube動画ID",
+      "kind": "text",
+      "required": false,
+      "isUnique": false
+    },
+    {
+      "idValue": "infYtCap09",
+      "fieldId": "youtube_caption",
+      "name": "Youtube動画キャプション",
+      "kind": "text",
+      "required": false,
+      "isUnique": false
+    },
+    {
+      "idValue": "infSubIm10",
+      "fieldId": "sub_images",
+      "name": "サブ画像リスト（最大3枚）",
+      "kind": "repeater",
+      "required": false,
+      "customFieldCreatedAtList": [
+        "2026-01-01T00:00:01.000Z"
+      ]
+    },
+    {
+      "idValue": "infFiles11",
+      "fieldId": "files",
+      "name": "関連ファイルリスト（最大3件）",
+      "kind": "repeater",
+      "required": false,
+      "customFieldCreatedAtList": [
+        "2026-01-01T00:00:02.000Z"
+      ]
+    },
+    {
+      "idValue": "infSites12",
+      "fieldId": "sites",
+      "name": "関連サイトリスト（最大3件）",
+      "kind": "repeater",
+      "required": false,
+      "customFieldCreatedAtList": [
+        "2026-01-01T00:00:03.000Z"
+      ]
+    },
+    {
+      "idValue": "infNote013",
+      "fieldId": "note",
+      "name": "メモ",
+      "kind": "textArea",
+      "required": false
+    }
+  ],
+  "customFields": [
+    {
+      "createdAt": "2026-01-01T00:00:01.000Z",
+      "fieldId": "cf_image",
+      "name": "画像セット",
+      "fields": [
+        {
+          "idValue": "cfImgMedia",
+          "fieldId": "image",
+          "name": "画像",
+          "kind": "media",
+          "required": true
+        },
+        {
+          "idValue": "cfImgCapti",
+          "fieldId": "caption",
+          "name": "キャプション",
+          "kind": "text",
+          "required": false,
+          "isUnique": false
+        }
+      ],
+      "position": [
+        [
+          "cfImgMedia"
+        ],
+        [
+          "cfImgCapti"
+        ]
+      ],
+      "updatedAt": "2026-01-01T00:00:01.000Z",
+      "viewerGroup": "cf_img"
+    },
+    {
+      "createdAt": "2026-01-01T00:00:02.000Z",
+      "fieldId": "cf_file",
+      "name": "関連ファイルセット",
+      "fields": [
+        {
+          "idValue": "cfFilPath1",
+          "fieldId": "file",
+          "name": "ファイルURLまたはパス（例: /files/sample.pdf）",
+          "kind": "text",
+          "required": true,
+          "isUnique": false
+        },
+        {
+          "idValue": "cfFilTitl2",
+          "fieldId": "title",
+          "name": "関連ファイル名",
+          "kind": "text",
+          "required": false,
+          "isUnique": false
+        }
+      ],
+      "position": [
+        [
+          "cfFilPath1"
+        ],
+        [
+          "cfFilTitl2"
+        ]
+      ],
+      "updatedAt": "2026-01-01T00:00:02.000Z",
+      "viewerGroup": "cf_fil"
+    },
+    {
+      "createdAt": "2026-01-01T00:00:03.000Z",
+      "fieldId": "cf_site",
+      "name": "関連サイトセット",
+      "fields": [
+        {
+          "idValue": "cfSitUrl01",
+          "fieldId": "url",
+          "name": "関連サイトURL",
+          "kind": "text",
+          "required": true,
+          "isUnique": false
+        },
+        {
+          "idValue": "cfSitTitl2",
+          "fieldId": "title",
+          "name": "関連サイト名",
+          "kind": "text",
+          "required": false,
+          "isUnique": false
+        }
+      ],
+      "position": [
+        [
+          "cfSitUrl01"
+        ],
+        [
+          "cfSitTitl2"
+        ]
+      ],
+      "updatedAt": "2026-01-01T00:00:03.000Z",
+      "viewerGroup": "cf_sit"
+    }
+  ]
+}

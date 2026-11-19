@@ -1,0 +1,87 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import ServiceNav4 from '../../components/ServiceNav4.astro';
+import { withBase } from '../../lib/microcms';
+---
+<MainLayout
+  title="サービス | GAIA EDUCATION for CORPORATION | 株式会社ガイアエデュケーション"
+  keywords="サービス,パソコンデスク,ICT,オフィス,官公庁,モニタ昇降,PC収納,PC保管,PCセキュリティ,ガイアエデュケーション,コーポレーション,GAIA EDUCATION for CORPORATION"
+  description="GAIA EDUCATION for CORPORATIONのサービスです。"
+  cssFiles={[
+    '/service/detail.css',
+    '/function/css/table.css',
+  ]}
+  pageTitleSmall="サービス"
+  pageTitleEn="SERVICE"
+  hideTwoColumnContainer={true}
+>
+  <Fragment slot="breadCrumb">
+    <li class="breadcrumb-item"><a href={withBase('/service/')}>サービス</a></li>
+  </Fragment>
+
+  <Fragment slot="wideFreeArea">
+    <ServiceNav4 />
+
+    <section>
+      <div class="container-fluid serviceArea">
+        <div class="container">
+          <div class="h_flat">
+            <h2>サービス</h2>
+          </div>
+          <div class="row">
+            <div class="col-12 mb-4">
+              <p class="bg-gray2"> GAIA EDUCATION for CORPORATIONとは<br>
+                株式会社ガイアエデュケーションのメイン事業である文教事業で培った経験と実績を基にオフィスでも利活用できる商品・サービスを提供する事を目的に作られました。<br>
+                情報化が進む中でPC周りの什器も変化しており、変化して行くニーズを適切に捉え、応えて行ける事を目標とし情報セキュリティをハードの側面から支援して参ります。</p>
+            </div>
+            <div class="col-12 col-md-6 card_outer">
+              <div class="card">
+                <div class="card-header">IT機器収納テーブル</div>
+                <a href={withBase('/service/table/')}> <img src={withBase('/service/product/images/table/it_01.jpg')} alt="IT機器収納テーブル" class="img-fluid"/></a>
+                <div class="card-body">
+                  <p class="card-text small">モニターやノートPC等のICT機器を収納・展開出来るIT機器収納型の会議テーブル<br>
+                    面倒な配線や画像転送装置の設置などに合わせてカスタマイズ可能なモデル<br>
+                    濃いカラーを基調とした高級感ある製品を中心としたラインナップ</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 card_outer">
+              <div class="card">
+                <div class="card-header">オフィス向け家具</div>
+                <a href={withBase('/service/other/')}> <img src={withBase('/service/product/images/other/other_01.jpg?2103081')} alt="オフィス向け家具" class="img-fluid"/></a>
+                <div class="card-body">
+                  <p class="card-text small">機能性の高いオフィス向け家具を中心にラインナップ<br>
+                    いつも利用する家具にガイアエデュケーションならではの機能を+ONE<br>
+                    <br>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 card_outer">
+              <div class="card">
+                <div class="card-header">PC 関連収納家具</div>
+                <a href={withBase('/service/furniture/')}> <img src={withBase('/service/product/images/furniture/pc_01.jpg?2006051')} alt="PC 関連収納家具" class="img-fluid"/></a>
+                <div class="card-body">
+                  <p class="card-text small">ノートPC収納に特化した製品ラインナップ<br>
+                    管理方法も壁面、移動型と豊富<br>
+                    コストパフォーマンスに優れたシンプルモデル</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 card_outer">
+              <div class="card">
+                <div class="card-header">OEM 製品</div>
+                <a href={withBase('/service/oem/')}> <img src={withBase('/service/product/images/oem/oem_01.jpg')} alt="OEM 製品" class="img-fluid"/></a>
+                <div class="card-body">
+                  <p class="card-text small">木製から金属製・樹脂製等幅広いオリジナル製品を企画開発<br>
+                    メーカー特定製品に合わせニーズを吸い上げたオリジナル製品の製作<br>
+                    御社ICT機器にプラス１の価値を提供</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </Fragment>
+</MainLayout>

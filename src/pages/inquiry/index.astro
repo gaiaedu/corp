@@ -1,0 +1,436 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { withBase } from '../../lib/microcms';
+
+const currentYear = new Date().getFullYear();
+const productYears = [currentYear, currentYear + 1, currentYear + 2];
+const productMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const bownowProductQueryKey = import.meta.env.PUBLIC_BOWNOW_PRODUCT_QUERY_KEY || '';
+---
+<MainLayout
+  title="お問い合わせ | GAIA EDUCATION for CORPORATION | 株式会社ガイアエデュケーション"
+  keywords="お問い合わせ,パソコンデスク,ICT,オフィス,官公庁,モニタ昇降,PC収納,PC保管,PCセキュリティ,ガイアエデュケーション,コーポレーション,GAIA EDUCATION for CORPORATION"
+  description="GAIA EDUCATION for CORPORATIONへのお問い合わせです。"
+  cssFiles={[
+    '/inquiry/detail.css',
+    '/function/css/table.css',
+    '/function/css/local/list05.css',
+  ]}
+  pageTitleSmall="お問い合わせ"
+  pageTitleEn="INQUIRY"
+  hideTwoColumnContainer={true}
+>
+  <Fragment slot="breadCrumb">
+    <li class="breadcrumb-item">お問い合わせ</li>
+  </Fragment>
+
+  <Fragment slot="wideFreeArea">
+    <section>
+      <div class="container-fluid serviceArea">
+        <div class="container">
+          <div class="h_flat">
+            <h2>お問い合わせ </h2>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p>お問い合わせは、通常2日以内にご回答するように努めておりますが、内容によりお時間がかかることがございます。</p>
+
+              <!-- 製品詳細ページから遷移してきた場合に、対象製品名・型番を明示するバナー（JSで自動表示） -->
+              <div id="selected-product-banner" class="alert alert-secondary mb-4" style="display: none;">
+                <strong>お問い合わせ対象製品：</strong>
+                <span id="selected-product-text" class="ml-1"></span>
+              </div>
+
+              <!-- =========================================================================
+                   【STEP 4：BowNow フォーム埋め込みエリア】
+                   ・BowNowの標準JavaScriptタグ（iframe方式）を貼る場合は、以下の
+                     #bownow-embed-container 内にタグを配置してください。
+                   ・既存のHTMLテーブルデザイン（下部の #inquiry_form）をそのまま利用する場合は、
+                     BowNowの「HTML埋め込み方式」の action 先と input の name 属性を適用してください。
+                   ========================================================================= -->
+              <div id="bownow-embed-container"></div>
+
+              <form
+                method="post"
+                action="#"
+                id="inquiry_form"
+                accept-charset="UTF-8"
+                class="form form-horizontal"
+                data-bownow-query-key={bownowProductQueryKey}
+              >
+                <table cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <th>お問い合わせ種別<span class="text-danger">※</span></th>
+                      <td>
+                        <div class="form-group col-sm-6 px-0">
+                          <select name="urquestion" id="urquestion" class="form-control" required>
+                            <option value="">※選択してください</option>
+                            <option value="製品について">製品について</option>
+                            <option value="お見積りのご依頼">お見積りのご依頼</option>
+                            <option value="製品導入のご相談">製品導入のご相談</option>
+                            <option value="その他">その他</option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>お名前<span class="text-danger">※</span></th>
+                      <td>
+                        <div class="form-row">
+                          <div class="col">
+                            <input type="text" name="last_name" id="last_name" class="form-control" placeholder="姓" required />
+                          </div>
+                          <div class="col">
+                            <input type="text" name="first_name" id="first_name" class="form-control" placeholder="名" required />
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>お名前フリガナ<span class="text-danger">※</span></th>
+                      <td>
+                        <div class="form-row">
+                          <div class="col">
+                            <input type="text" name="last_name_kana" id="last_name_kana" class="form-control" placeholder="セイ" required />
+                          </div>
+                          <div class="col">
+                            <input type="text" name="first_name_kana" id="first_name_kana" class="form-control" placeholder="メイ" required />
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>会社名<span class="text-danger">※</span></th>
+                      <td>
+                        <div class="form-group col px-0">
+                          <input type="text" name="company_name" id="company_name" class="form-control" required />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>郵便番号<span class="text-danger">※</span></th>
+                      <td>
+                        <div class="form-row align-items-center">
+                          <div class="col-auto">〒</div>
+                          <div class="col-5 col-sm-3">
+                            <input type="tel" name="zip1" id="zip1" class="widthOneThird form-control" placeholder="000" onkeyup="AjaxZip3.zip2addr('zip1','zip2','prefecture','address');" required />
+                          </div>
+                          <div class="col-auto">-</div>
+                          <div class="col-5 col-sm-3">
+                            <input type="tel" name="zip2" id="zip2" class="widthOneThird form-control" placeholder="0000" onkeyup="AjaxZip3.zip2addr('zip1','zip2','prefecture','address');" required />
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>都道府県<span class="text-danger">※</span></th>
+                      <td>
+                        <div class="form-group col-sm-6 px-0">
+                          <select name="prefecture" id="prefecture" class="form-control" required>
+                            <option value="">※選択してください</option>
+                            <option value="北海道">北海道</option>
+                            <option value="青森県">青森県</option>
+                            <option value="岩手県">岩手県</option>
+                            <option value="宮城県">宮城県</option>
+                            <option value="秋田県">秋田県</option>
+                            <option value="山形県">山形県</option>
+                            <option value="福島県">福島県</option>
+                            <option value="東京都">東京都</option>
+                            <option value="神奈川県">神奈川県</option>
+                            <option value="埼玉県">埼玉県</option>
+                            <option value="千葉県">千葉県</option>
+                            <option value="茨城県">茨城県</option>
+                            <option value="栃木県">栃木県</option>
+                            <option value="群馬県">群馬県</option>
+                            <option value="新潟県">新潟県</option>
+                            <option value="山梨県">山梨県</option>
+                            <option value="長野県">長野県</option>
+                            <option value="富山県">富山県</option>
+                            <option value="石川県">石川県</option>
+                            <option value="福井県">福井県</option>
+                            <option value="愛知県">愛知県</option>
+                            <option value="岐阜県">岐阜県</option>
+                            <option value="静岡県">静岡県</option>
+                            <option value="三重県">三重県</option>
+                            <option value="大阪府">大阪府</option>
+                            <option value="京都府">京都府</option>
+                            <option value="兵庫県">兵庫県</option>
+                            <option value="滋賀県">滋賀県</option>
+                            <option value="奈良県">奈良県</option>
+                            <option value="和歌山県">和歌山県</option>
+                            <option value="鳥取県">鳥取県</option>
+                            <option value="島根県">島根県</option>
+                            <option value="岡山県">岡山県</option>
+                            <option value="広島県">広島県</option>
+                            <option value="山口県">山口県</option>
+                            <option value="徳島県">徳島県</option>
+                            <option value="香川県">香川県</option>
+                            <option value="愛媛県">愛媛県</option>
+                            <option value="高知県">高知県</option>
+                            <option value="福岡県">福岡県</option>
+                            <option value="佐賀県">佐賀県</option>
+                            <option value="長崎県">長崎県</option>
+                            <option value="熊本県">熊本県</option>
+                            <option value="大分県">大分県</option>
+                            <option value="宮崎県">宮崎県</option>
+                            <option value="鹿児島県">鹿児島県</option>
+                            <option value="沖縄県">沖縄県</option>
+                            <option value="海外">海外</option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>ご住所<span class="text-danger">※</span></th>
+                      <td>
+                        <div class="form-group col px-0">
+                          <input type="text" name="address" id="address" class="form-control" required />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>電話番号<span class="text-danger">※</span></th>
+                      <td>
+                        <div class="form-row align-items-center">
+                          <div class="col-3">
+                            <input type="tel" name="tel1" id="tel1" class="widthOneThird form-control" required />
+                          </div>
+                          <div class="col-auto">-</div>
+                          <div class="col-3">
+                            <input type="tel" name="tel2" id="tel2" class="widthOneThird form-control" required />
+                          </div>
+                          <div class="col-auto">-</div>
+                          <div class="col-3">
+                            <input type="tel" name="tel3" id="tel3" class="widthOneThird form-control" required />
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>FAX番号</th>
+                      <td>
+                        <div class="form-row align-items-center">
+                          <div class="col-3">
+                            <input type="tel" name="fax1" id="fax1" class="widthOneThird form-control" />
+                          </div>
+                          <div class="col-auto">-</div>
+                          <div class="col-3">
+                            <input type="tel" name="fax2" id="fax2" class="widthOneThird form-control" />
+                          </div>
+                          <div class="col-auto">-</div>
+                          <div class="col-3">
+                            <input type="tel" name="fax3" id="fax3" class="widthOneThird form-control" />
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>メールアドレス<span class="text-danger">※</span></th>
+                      <td>
+                        <div class="form-group col px-0">
+                          <input type="email" name="email" id="email" class="form-control" required />
+                        </div>
+                        <p>※お問い合わせが完了しますと受付完了メールをこちらのメールアドレスに送信します。お申し込み前に次のドメインを受信できるようご確認、設定をお願い致します。<br>
+                          gaia-edu.co.jp </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th colspan="2">お問い合わせ内容<span class="text-danger">※</span></th>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div class="form-group">
+                          <div class="col">
+                            <textarea name="comment" id="comment" class="form-control" rows="10" required></textarea>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <th>導入予定先都道府県<span class="text-danger">※</span></th>
+                      <td>
+                        <div class="form-group col-sm-6 px-0">
+                          <select name="prefecture2" id="prefecture2" class="form-control" required>
+                            <option value="">※選択してください</option>
+                            <option value="北海道">北海道</option>
+                            <option value="青森県">青森県</option>
+                            <option value="岩手県">岩手県</option>
+                            <option value="宮城県">宮城県</option>
+                            <option value="秋田県">秋田県</option>
+                            <option value="山形県">山形県</option>
+                            <option value="福島県">福島県</option>
+                            <option value="東京都">東京都</option>
+                            <option value="神奈川県">神奈川県</option>
+                            <option value="埼玉県">埼玉県</option>
+                            <option value="千葉県">千葉県</option>
+                            <option value="茨城県">茨城県</option>
+                            <option value="栃木県">栃木県</option>
+                            <option value="群馬県">群馬県</option>
+                            <option value="新潟県">新潟県</option>
+                            <option value="山梨県">山梨県</option>
+                            <option value="長野県">長野県</option>
+                            <option value="富山県">富山県</option>
+                            <option value="石川県">石川県</option>
+                            <option value="福井県">福井県</option>
+                            <option value="愛知県">愛知県</option>
+                            <option value="岐阜県">岐阜県</option>
+                            <option value="静岡県">静岡県</option>
+                            <option value="三重県">三重県</option>
+                            <option value="大阪府">大阪府</option>
+                            <option value="京都府">京都府</option>
+                            <option value="兵庫県">兵庫県</option>
+                            <option value="滋賀県">滋賀県</option>
+                            <option value="奈良県">奈良県</option>
+                            <option value="和歌山県">和歌山県</option>
+                            <option value="鳥取県">鳥取県</option>
+                            <option value="島根県">島根県</option>
+                            <option value="岡山県">岡山県</option>
+                            <option value="広島県">広島県</option>
+                            <option value="山口県">山口県</option>
+                            <option value="徳島県">徳島県</option>
+                            <option value="香川県">香川県</option>
+                            <option value="愛媛県">愛媛県</option>
+                            <option value="高知県">高知県</option>
+                            <option value="福岡県">福岡県</option>
+                            <option value="佐賀県">佐賀県</option>
+                            <option value="長崎県">長崎県</option>
+                            <option value="熊本県">熊本県</option>
+                            <option value="大分県">大分県</option>
+                            <option value="宮崎県">宮崎県</option>
+                            <option value="鹿児島県">鹿児島県</option>
+                            <option value="沖縄県">沖縄県</option>
+                            <option value="海外">海外</option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>お問い合わせ<br>
+                        製品名／製品型番<span class="text-danger">※</span></th>
+                      <td class="align-middle">
+                        <div class="form-group col px-0">
+                          <input type="text" name="product" id="product" class="form-control" required />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>導入予定台数<span class="text-danger">※</span></th>
+                      <td>
+                        <div class="form-group col col-sm-6 px-0">
+                          <input type="text" name="product_cnt" id="product_cnt" class="form-control" required />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>導入予定時期<span class="text-danger">※</span></th>
+                      <td class="align-middle">
+                        <div class="form-row align-items-center">
+                          <div class="col-5">
+                            <select name="product_year" id="product_year" class="form-control my-1 mr-sm-2" required>
+                              <option value="">※選択してください</option>
+                              {productYears.map((y) => (
+                                <option value={String(y)}>{y}</option>
+                              ))}
+                            </select>
+                          </div>
+                          <div class="col-auto">
+                            <label for="product_year" class="my-1 mr-sm-2">年</label>
+                          </div>
+                          <div class="col-5">
+                            <select name="product_month" id="product_month" class="form-control my-1 mr-sm-2" required>
+                              <option value="">※選択してください</option>
+                              {productMonths.map((m) => (
+                                <option value={String(m)}>{m}</option>
+                              ))}
+                            </select>
+                          </div>
+                          <div class="col-auto">
+                            <label for="product_month" class="my-1 mr-sm-2">月</label>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <th>個人情報の取扱規程<span class="text-danger">※</span></th>
+                      <td>
+                        <input id="privacy" name="privacy" type="checkbox" value="個人情報の取扱規程に同意する" required />
+                        <label for="privacy" class="form-check-label">個人情報の取扱規程に同意する</label>
+                        <br>
+                        当社の<a href="https://www.gaia-edu.co.jp/company/privacy_policy/toriatsukai/index.html" target="_blank" rel="noopener noreferrer">個人情報の取扱規程</a>について同意される方のみ送信できます。
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="form-btnBox">
+                  <button type="submit" value="入力内容のご確認" class="btn-25 bg-black">入力内容のご確認 <i class="fas fa-arrow-circle-right"></i></button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </Fragment>
+
+  <Fragment slot="scripts">
+    <script is:inline type="text/javascript" src={withBase('/js/ajaxzip3.js')}></script>
+    <script is:inline>
+      /**
+       * 製品詳細ページからの遷移時に URL パラメータ (?product=製品名／型番) を読み取り、
+       * 1) フォームの「お問い合わせ製品名／製品型番」入力欄 (#product) への自動セット
+       * 2) BowNow の URL パラメータ初期値設定 (_bq_xxx) への自動変換・iframe引き継ぎ
+       * を行うスクリプト
+       */
+      (function() {
+        var params = new URLSearchParams(window.location.search);
+        var productVal = params.get('product');
+        if (!productVal) {
+          var pName = params.get('product_name') || '';
+          var pModel = params.get('product_model') || '';
+          if (pName || pModel) {
+            productVal = pName && pModel ? (pName + '／' + pModel) : (pName || pModel);
+          }
+        }
+
+        if (!productVal) return;
+
+        // 1. 対象製品バナーの表示
+        var banner = document.getElementById('selected-product-banner');
+        var bannerText = document.getElementById('selected-product-text');
+        if (banner && bannerText) {
+          bannerText.textContent = productVal;
+          banner.style.display = 'block';
+        }
+
+        // 2. HTMLフォームの #product 入力欄へ自動セット
+        var productInput = document.getElementById('product');
+        if (productInput) {
+          productInput.value = productVal;
+        }
+
+        // 3. BowNow クエリキー (PUBLIC_BOWNOW_PRODUCT_QUERY_KEY) が設定されている場合、
+        //    URLクエリおよびBowNowのiframeへ初期値パラメータを自動付与
+        var formEl = document.getElementById('inquiry_form');
+        var bownowKey = formEl ? formEl.getAttribute('data-bownow-query-key') : '';
+        if (bownowKey && !params.has(bownowKey)) {
+          var newUrl = new URL(window.location.href);
+          newUrl.searchParams.set(bownowKey, productVal);
+          window.history.replaceState({}, '', newUrl.toString());
+        }
+      })();
+    </script>
+  </Fragment>
+</MainLayout>
+

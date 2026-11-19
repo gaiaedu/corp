@@ -1,0 +1,305 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.center-t th,
+.center-t td{
+    text-align: center;
+    vertical-align: middle;
+}
+
+th.left-t,
+td.left-t {
+    text-align: left!important;
+    vertical-align: middle;
+}
+
+
+
+.bg-beige{
+    background-color: #ede5dc;
+}
+.bg-brown{
+    background-color: #a57c52;
+    color: #fff;
+}
+.border-brown.scroll table {
+    border-top: 1px solid #a57c52;
+    border-left: 1px solid #a57c52;
+}
+.border-brown.scroll tbody td {
+    border-bottom: 1px solid #a57c52;
+    border-right: 1px solid #a57c52;
+}
+/* ##################################################################### */
+/*	ステップ　共通
+/* ##################################################################### */
+.form-group.cell_hide {
+	display: none;
+}
+.stepBar {
+	position: relative;
+	list-style: none;
+	margin: 0 0 1em;
+	padding: 0;
+	text-align: center;
+	width: 100%;
+	overflow: hidden;
+ *zoom: 1;
+}
+.stepBar .step {
+	position: relative;
+	float: left;
+	display: inline-block;
+	line-height: 40px;
+	padding: 0 40px 0 20px;
+	background-color: #eee;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.stepBar .step:before, .stepBar .step:after {
+	position: absolute;
+	left: -15px;
+	display: block;
+	content: '';
+	background-color: #eee;
+	border-left: 4px solid #FFF;
+	width: 20px;
+	height: 20px;
+}
+.stepBar .step:after {
+	top: 0;
+	-moz-transform: skew(30deg);
+	-ms-transform: skew(30deg);
+	-webkit-transform: skew(30deg);
+	transform: skew(30deg);
+}
+.stepBar .step:before {
+	bottom: 0;
+	-moz-transform: skew(-30deg);
+	-ms-transform: skew(-30deg);
+	-webkit-transform: skew(-30deg);
+	transform: skew(-30deg);
+}
+.stepBar .step:first-child {
+	-moz-border-radius-topleft: 4px;
+	-webkit-border-top-left-radius: 4px;
+	border-top-left-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.stepBar .step:first-child:before, .stepBar .step:first-child:after {
+	content: none;
+}
+.stepBar .step:last-child {
+	-moz-border-radius-topright: 4px;
+	-webkit-border-top-right-radius: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+.stepBar .step.current {
+	color: #FFF;
+	background-color: #003c84;
+}
+.stepBar .step.current:before, .stepBar .step.current:after {
+	background-color: #26bfa1;
+}
+.stepBar.step2 .step {
+	width: 50%;
+}
+.stepBar.step3 .step {
+	width: 33.333%;
+}
+.stepBar.step4 .step {
+	width: 25%;
+}
+.stepBar.step5 .step {
+	width: 20%;
+}
+/* ===================================================================== */
+/*	横並びにする
+/* ===================================================================== */
+
+
+/* ===================================================================== */
+/*	共通設定 テーブル　基本設定
+/* ===================================================================== */
+
+table {
+	float: left;
+	clear: both;
+	width: 100%!important;
+	margin-bottom: 2.5em;
+	margin-top: 0.5em;   
+    border-left: solid 1px #ddd;
+    border: solid 1px #ddd;
+}
+
+td {
+	background-color: #FDFDFD;
+	text-align: left;
+	vertical-align: top;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 15px;
+	padding-right: 10px;
+	font-size: 90%;
+/*	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;*/
+}
+th {
+	font-size: 100%;
+	vertical-align: middle;
+	font-weight: normal;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	/*background-color: #F5F5F5;*/
+	background-color: #ebecec;	
+	text-align: left;
+	float: none;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+th.smartNone {
+	display: none;
+}
+th.title {
+	height: auto;
+	background-color: #EBEBEB;
+}
+
+/* ===================================================================== */
+/*	共通設定 疑似テーブル　基本設定
+/* ===================================================================== */
+/* --言語設定-- */
+.langJpn {
+	ime-mode: active
+}
+.langEng {
+	ime-mode: disabled;
+}
+/* --BG設定-- */
+
+
+
+
+/* --------------------------------------------------------------------- */
+/*	共通設定 フォーム　基本設定　テキストボックスの文字の色を変更
+/* --------------------------------------------------------------------- */
+/* --------------------------------------------------------------------- */
+/*	共通設定 フォーム　基本設定　入力言語を設定
+/* --------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+/* ##################################################################### */
+/*	タブレット
+/* ##################################################################### */
+th {
+	width: 30%;
+}
+
+td {
+	width: 70%;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+}
+
+@media (min-width: 992px) {
+/* ##################################################################### */
+/*	タブレット大
+/* ##################################################################### */
+/* ===================================================================== */
+/*	
+/* ===================================================================== */
+	
+
+
+}
+
+@media (min-width: 1200px) {
+/* ##################################################################### */
+/*	PC　コンピュータ
+/* ##################################################################### */
+/* ===================================================================== */
+/*	
+/* ===================================================================== */
+th {
+	width: 20%;
+}
+
+td {
+	width: 80%;
+}	
+	
+}
+
+@media only screen and (max-width:769px) {
+/* ##################################################################### */
+/*	タブレット・PC　共通設定 テーブル
+/* ##################################################################### */
+/* ===================================================================== */
+/*	タブレット・PC　共通設定 テーブル　基本設定
+/* ===================================================================== */
+
+tbody {
+	display: block;
+}
+tbody tr {
+	display: block;
+	margin-bottom: 0.5em;
+	text-align: left;
+}
+tbody th, tbody td {
+	padding-right: 15px;
+	display: list-item;
+	border: none;
+	list-style-type: none;
+	margin-left: 0px!important;
+}
+    
+
+/*	スクロール
+--------------------------------------------------------------------- */   
+.scroll {
+  overflow-x: auto;
+  /*white-space: nowrap;*/
+  border: solid 1px #ddd;
+}
+  .scroll table{
+    min-width: 769px;
+    margin: 0;
+    border: none;
+  }
+.scroll tbody {
+	display: table;
+}
+.scroll tbody tr {
+	display:table-row;
+	margin-bottom: 0em;
+	text-align: left;
+}
+.scroll tbody th, .scroll tbody td {
+/*    text-align: center;
+    vertical-align: middle;*/
+	display:table-cell;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	list-style-type: none;
+}
+/* --------------------------------------------------------------------- */
+/*	★スマホ　お問い合わせ　TDの前に文字を挿入
+/* --------------------------------------------------------------------- */
+/*　tbody td:nth-of-type(1):before { content: " [ 会員価格 ] "; }
+/*　tbody td:nth-of-type(2):before { content: " [ 一般価格 ] "; }*/
+
+
+
+}

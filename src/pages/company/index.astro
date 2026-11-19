@@ -1,0 +1,88 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import CompanySideNav from '../../components/CompanySideNav.astro';
+---
+<MainLayout
+  title="会社概要 | GAIA EDUCATION for CORPORATION | 株式会社ガイアエデュケーション"
+  keywords="会社概要,パソコンデスク,ICT,オフィス,官公庁,モニタ昇降,PC収納,PC保管,PCセキュリティ,ガイアエデュケーション,コーポレーション,GAIA EDUCATION for CORPORATION"
+  description="株式会社ガイアエデュケーションの会社概要です。"
+  cssFiles={[
+    '/company/detail.css',
+    '/function/css/table.css',
+    '/function/css/local/list01.css',
+  ]}
+  pageTitleSmall="会社概要"
+  pageTitleEn="COMPANY"
+>
+  <Fragment slot="breadCrumb">
+    <li class="breadcrumb-item">会社概要</li>
+  </Fragment>
+
+  <Fragment slot="contentsArea">
+    <section>
+      <div class="h_flat">
+        <h2>会社概要</h2>
+      </div>
+      <div class="basic">
+        <table summary="事務所のご案内">
+          <tbody>
+            <tr>
+              <th>会社名</th>
+              <td>株式会社ガイアエデュケーション<br>
+                （英文表記： Gaia Education Co.,Ltd.)</td>
+            </tr>
+            <tr>
+              <th>所在地</th>
+              <td><strong>本社</strong>：<br />
+                〒107-0061 東京都港区北青山1丁目4番6号 246青山<br />
+                TEL：<a href="tel:03-6809-3881">03-6809-3881</a> ／ FAX：03-6809-3882<br />
+                <strong>大阪オフィス</strong>：<br />
+                〒532-0011 大阪府大阪市淀川区西中島7丁目7番3号 f+BASE museo 305<br />
+                TEL：<a href="tel:06-6379-3834">06-6379-3834</a> ／ FAX：06-6379-3835<br />
+                <strong>福岡オフィス</strong>：<br />
+                〒812-0013 福岡県福岡市博多区博多駅東2丁目4番17号 第6岡部ビル7階 D号室<br />
+                TEL：<a href="tel:092-413-5728">092-413-5728</a> ／ FAX：092-413-5727</td>
+            </tr>
+            <tr>
+              <th>URL</th>
+              <td><a href="https://www.gaia-edu.co.jp/"> https://www.gaia-edu.co.jp/ </a></td>
+            </tr>
+            <tr>
+              <th>創業</th>
+              <td>2006年10月</td>
+            </tr>
+            <tr>
+              <th>創立</th>
+              <td>2012年7月</td>
+            </tr>
+            <tr>
+              <th>資本金</th>
+              <td>1,000万円</td>
+            </tr>
+            <tr>
+              <th>役員</th>
+              <td>代表取締役　林 健一郎<br />
+                取締役　大林 春樹</td>
+            </tr>
+            <tr>
+              <th>主要事業</th>
+              <td>ICT関連ファニチャー及び周辺製品の企画・開発・製造・販売並びに各種サービスの提供<br />
+                携帯型電子黒板Mimioの国内販売代理事業<br />
+                通信販売事業<br />
+                ICT機器周辺製品のOEM</td>
+            </tr>
+            <tr>
+              <th>建設業許可番号</th>
+              <td>一般建設業　東京都知事　許可（般-29）第138838号</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </Fragment>
+
+  <Fragment slot="localArea">
+    <CompanySideNav />
+  </Fragment>
+</MainLayout>
+

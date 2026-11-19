@@ -1,0 +1,38 @@
+{
+  "apiFields": [
+    {
+      "fieldId": "label",
+      "name": "画像名",
+      "kind": "text",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "fieldId": "image",
+      "name": "画像",
+      "kind": "media",
+      "required": true
+    },
+    {
+      "fieldId": "url",
+      "name": "リンク先URL",
+      "kind": "text",
+      "required": false,
+      "isUnique": false
+    },
+    {
+      "fieldId": "order",
+      "name": "並び順",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "fieldId": "note",
+      "name": "メモ",
+      "kind": "textArea",
+      "required": false
+    }
+  ],
+  "customFields": []
+}
+

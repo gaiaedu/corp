@@ -1,0 +1,235 @@
+---
+import { withBase } from '../lib/microcms';
+
+export interface Props {
+  title?: string;
+  keywords?: string;
+  description?: string;
+  ogType?: 'website' | 'article';
+  ogTitle?: string;
+  ogDescription?: string;
+  ogUrl?: string;
+  cssFiles?: string[];
+  pageTitleSmall?: string;
+  pageTitleEn?: string;
+  hidePageTitle?: boolean;
+  hideTwoColumnContainer?: boolean;
+}
+
+const {
+  title = 'GAIA EDUCATION for CORPORATION | 株式会社ガイアエデュケーション',
+  keywords = 'パソコンデスク,ICT,オフィス,官公庁,モニタ昇降,PC収納,PC保管,PCセキュリティ,ガイアエデュケーション,コーポレーション,GAIA EDUCATION for CORPORATION',
+  description = 'オフィス用のパソコンデスク及びPC周辺什器の製造と販売。パソコンデスクのレイアウト、搬入、運搬までトータルなサービス。',
+  ogType = 'article',
+  ogTitle,
+  ogDescription,
+  ogUrl,
+  cssFiles = [],
+  pageTitleSmall,
+  pageTitleEn,
+  hidePageTitle = false,
+  hideTwoColumnContainer = false,
+} = Astro.props;
+
+const resolvedOgTitle = ogTitle || title;
+const resolvedOgDescription = ogDescription || description;
+const resolvedOgUrl = ogUrl || new URL(Astro.url.pathname, Astro.site || 'https://corp.gaia-edu.co.jp').toString();
+const ogImageUrl = new URL(withBase('/function/images/ogp.png'), Astro.site || 'https://corp.gaia-edu.co.jp').toString();
+---
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+<!-- Google Tag Manager -->
+<script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PK2C8TC');</script>
+<!-- End Google Tag Manager -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>{title}</title>
+<meta name="keywords" content={keywords} />
+<meta name="description" content={description} />
+<meta name="theme-color" content="#040000">
+<link rel="icon" href={withBase('/function/images/favicon.ico')} type="image/vnd.microsoft.icon">
+<link rel="shortcut icon" href={withBase('/function/images/favicon.ico')} type="image/vnd.microsoft.icon">
+<link rel="apple-touch-icon" sizes="152x152" href={withBase('/function/images/apple-touch-icon.png')}>
+<!-- Bootstrap -->
+<link href={withBase('/css/bootstrap-4.3.1.css')} rel="stylesheet" type="text/css">
+<link href={withBase('/function/css/common.css')} rel="stylesheet" type="text/css">
+<link href={withBase('/function/css/navigation.css')} rel="stylesheet" type="text/css">
+<link href={withBase('/function/css/style.css')} rel="stylesheet" type="text/css">
+<link href={withBase('/function/css/color.css')} rel="stylesheet" type="text/css">
+<script is:inline type="text/javascript" src={withBase('/function/js/copy.js')}></script>
+{cssFiles.map((href) => (
+  <link href={withBase(href)} rel="stylesheet" type="text/css" />
+))}
+<slot name="head-extra" />
+<!-- OGP -->
+<meta property="og:type" content={ogType}>
+<meta property="og:title" content={resolvedOgTitle}>
+<meta property="og:description" content={resolvedOgDescription}>
+<meta property="og:url" content={resolvedOgUrl}>
+<meta property="og:site_name" content="GAIA EDUCATION for CORPORATION | 株式会社ガイアエデュケーション">
+<meta property="og:image" content={ogImageUrl}>
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:email" content="corpinfo@gaia-edu.co.jp">
+<meta property="og:phone_number" content="03-6809-3881">
+<!-- OGP -->
+</head>
+<body id="top">
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PK2C8TC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- グローバルナビゲーション -->
+<div class="headerArea">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-gray">
+    <div class="logo"> <a class="navbar-brand" href={withBase('/')}><img src={withBase('/function/images/logo.svg')} alt="株式会社ガイアエデュケーション" /></a> </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mr-3">
+        <li class="list01 nav-item"> <a class="nav-link" href={withBase('/')}>Home <span class="sr-only">(current)</span></a> </li>
+        <li class="list02 nav-item"> <a class="nav-link" href={withBase('/service/')}>サービス</a></li>
+        <li class="list03 nav-item"> <a class="nav-link" href={withBase('/work/')}>導入事例</a></li>
+        <li class="list04 nav-item"> <a class="nav-link" href={withBase('/company/')}>会社概要</a></li>
+        <li class="list05 nav-item"> <a class="nav-link" href={withBase('/inquiry/')}>お問い合わせ</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<div class="container-fluid pageTitleArea">
+  {!hidePageTitle && pageTitleSmall && pageTitleEn && (
+    <div class="container text-center">
+      <div class="t_icon">
+        <h1 class="ud_line"><span class="small">{pageTitleSmall}</span><br>{pageTitleEn}</h1>
+      </div>
+    </div>
+  )}
+  <slot name="pageTitleArea" />
+</div>
+
+<div class="container-fluid breadCrumbArea mt-2">
+  <div class="container mb-3">
+    <nav aria-label="パンくずリスト">
+      <ol class="breadcrumb bg-white px-0">
+        <li class="breadcrumb-item"><a href={withBase('/')}>Home</a></li>
+        <slot name="breadCrumb" />
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<slot name="wideFreeArea" />
+<slot name="cmsArea" />
+<slot name="wideFreeArea2" />
+
+{!hideTwoColumnContainer && (
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-9 order-lg-1">
+        <slot name="contentsArea" />
+      </div>
+      <div class="col-md-12 col-lg-3 order-lg-2">
+        <div id="localNav">
+          <slot name="localArea" />
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+<section>
+  <div class="container-filde lineBox black inquiryBox">
+    <div class="container pt-4">
+      <div class="row">
+        <div class="col-12">
+          <h2>お問い合わせはこちら</h2>
+        </div>
+      </div>
+      <div class="row lineBox_inn bg-gray align-items-center">
+        <div class="col-12 col-lg-5"> <a href="tel:03-6809-3881"><img src={withBase('/function/images/tel.svg')} alt="03-6809-3881" class="img-fluid p-3 px-lg-0"/></a> </div>
+        <div class="col-12 col-lg-7">
+          <div class="webF h-100">
+            <h3>お問い合わせ</h3>
+            <div class="row align-items-center no-gutters">
+              <div class="col-12 text-center">
+                <p><a href={withBase('/inquiry/')} class="btn-gray"><img src={withBase('/function/images/arrow_web.svg')} alt="" width="23" height="23" class="mr-2"/> WEBフォーム</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<slot name="wideFreeArea3" />
+
+<p class="mb-0"><a href="#top" class="pagetop float-right sticky-bottom"><img src={withBase('/function/images/page_top.png')} alt="Page Topへ"></a></p>
+<footer>
+  <div class="container-fluid section2">
+    <div class="container bg-gray">
+      <nav>
+        <div class="row">
+          <div class="col-6 col-xl-2 order-md-1">
+            <dl class="arrow">
+              <dd><a href={withBase('/')}>ホーム</a></dd>
+              <dd><a href={withBase('/service/')}>サービス</a></dd>
+              <dd><a href={withBase('/work/')}>導入事例</a></dd>
+              <dd><a href={withBase('/company/')}>会社概要</a></dd>
+              <dd><a href={withBase('/inquiry/')}>お問い合わせ</a></dd>
+            </dl>
+          </div>
+          <div class="col-6 col-xl-3 order-md-3">
+            <dl class="partner">
+              <dt>関連サイト</dt>
+              <dd><a href="https://www.gaia-edu.co.jp/" target="_blank" rel="noopener noreferrer" class="outlink">株式会社ガイアエデュケーション</a></dd>
+              <dd><a href="https://mimio.penplus.gaia-edu.co.jp/" target="_blank" rel="noopener noreferrer" class="outlink">mimio</a></dd>
+              <dd><a href="https://mimio.penplus.gaia-edu.co.jp/penplus" target="_blank" rel="noopener noreferrer" class="outlink">PenPlus</a></dd>
+            </dl>
+          </div>
+          <div class="col-12 col-sm-6 col-xl-3 order-md-2">
+            <dl class="arrow">
+              <dd><a href="https://www.gaia-edu.co.jp/company/privacy_policy/index.html" target="_blank" rel="noopener noreferrer">個人情報保護方針</a></dd>
+              <dd><a href="https://www.gaia-edu.co.jp/company/privacy_policy/toriatsukai/index.html" target="_blank" rel="noopener noreferrer">個人情報保護の取り扱い</a></dd>
+              <dd><a href="https://www.gaia-edu.co.jp/company/privacy_policy/contact/index.html" target="_blank" rel="noopener noreferrer">個人情報保護に関するお問い合わせ</a></dd>
+              <dd><a href={withBase('/company/about_this_site/')}>サイトの利用上の注意</a></dd>
+              <dd><a href={withBase('/information/')}>お知らせ</a></dd>
+            </dl>
+          </div>
+          <div class="col-12 col-sm-6 col-xl-4 order-md-4">
+            <dl>
+              <dt><img src={withBase('/function/images/logo.svg')} alt="株式会社ガイアエデュケーション" class="footer_logo"/></dt>
+              <dd> 株式会社ガイアエデュケーション <br>
+                〒107-0061 <br class="d-md-none" >
+                東京都港区北青山1丁目4番6号 246青山<br>
+                TEL：<a href="tel:03-6809-3881">03-6809-3881</a> &sol; FAX：03-6809-3882</dd>
+            </dl>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="container-fluid section3">
+    <div class="container text-center">
+      <p>COPYRIGHT&copy; <script is:inline type="text/javascript">copy();</script> Gaia Education Co.,Ltd. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script is:inline type="text/javascript" src={withBase('/js/jquery-3.3.1.min.js')}></script>
+<script is:inline type="text/javascript" src={withBase('/function/js/lib.js')}></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script is:inline type="text/javascript" src={withBase('/js/popper.min.js')}></script>
+<script is:inline type="text/javascript" src={withBase('/js/bootstrap-4.3.1.js')}></script>
+<script is:inline defer src="https://use.fontawesome.com/releases/v5.11.0/js/all.js"></script>
+<slot name="scripts" />
+</body>
+</html>

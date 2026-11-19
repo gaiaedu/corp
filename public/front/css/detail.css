@@ -1,0 +1,238 @@
+/* CSS Document */
+/* ##################################################################### */
+/*	EyewillStrap Ver.1.0
+/* ##################################################################### */
+.pageTitleArea {
+  display: none;
+}
+.breadCrumbArea {
+  display: none;
+}
+#localNav {
+  display: none;
+}
+.navbar-nav li.list01 .nav-link {
+  color: #fff;
+  border-bottom: 2px solid #148acc;
+  ;
+  padding-bottom: 0.7rem;
+}
+.inquiryBox {
+  display: none;
+}
+/*　複数　card-carousel*/
+.slick-main3 h2, .carousel-grid h2 {
+  font-size: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+  text-align: center;
+  background-color: #3f3f3f;
+}
+.mv .slick-prev, .mv .slick-next {
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: transparent;
+  z-index: 10;
+}
+.mv .slick-prev:before {
+  content: '';
+  display: inline-block;
+  width:25px;
+  height:25px;
+  background-image: url("../images/arrow_icon_prev.png");
+  background-repeat: no-repeat;
+	background-size: 25px 10px;
+  background-size: contain;
+  vertical-align: middle;
+background-position:center top;
+}
+.mv .slick-next:before {
+  content: '';
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-image: url("../images/arrow_icon_next.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+
+}
+.mv .slick-prev:hover, .mv .slick-prev:focus, .mv .slick-prev {
+  left: 15px;
+}
+.mv .slick-next:hover, .mv .slick-next:focus, .mv .slick-next {
+  right: 15px;
+}
+/* */
+.work .slick-prev, .work .slick-next {
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: transparent;
+  z-index: 10;
+}
+.work .slick-prev:before {
+  content: url("../images/prev-icon.svg");
+}
+.work .slick-next:before {
+  content: url("../images/next-icon.svg");
+}
+.work .slick-prev:hover, .work .slick-prev:focus, .work .slick-prev {
+  left: -15px;
+}
+.work .slick-next:hover, .work .slick-next:focus, .work .slick-next {
+  right: -15px;
+}
+
+/* */
+ul.slick-main3 {
+  padding-left: 0;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+ul.slick-main3 li {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.slick-main3 h2 {
+  color: #fff;
+}
+.slick-main3 h2 {
+  font-size: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+  text-align: center;
+  background-color: #3f3f3f;
+}
+/* ===================================================================== */
+/*	スマホ基本設定
+/* ===================================================================== */
+.breadCrumb {
+  display: none;
+}
+/*.green_bk.b3{
+	background-image:none;
+}*/
+.lineBox.b3 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.area.b4 {
+  padding-top: 20px !important;
+  padding-bottom: 30px !important;
+}
+.nyuukai_box {
+  margin-top: 0px;
+}
+.nyuukai_box.green_bk {
+  background-image: none;
+}
+@media (min-width: 480px) {
+  /* ##################################################################### */
+  /*	タブレット小
+/* ##################################################################### */
+.mv .slick-prev, .mv .slick-next {
+  top: 40%;
+  -webkit-transform: translate(0, -45%);
+  -ms-transform: translate(0, -45%);
+  transform: translate(0, -45%);
+}	
+.mv .slick-prev:hover, .mv .slick-prev:focus, .mv .slick-prev {
+  left: 35px;
+}
+.mv .slick-next:hover, .mv .slick-next:focus, .mv .slick-next {
+  right: 35px;
+}	
+.mv .slick-prev:before {
+  width: 20px;
+  height: 40px;
+}
+.mv .slick-next:before {
+  width: 20px;
+  height: 40px;
+}
+}
+@media (min-width: 576px) {
+  /* ##################################################################### */
+  /*	タブレット小
+/* ##################################################################### */
+
+  ul.slick-main3 li {
+    padding-right: 11px;
+  }
+  .work .slick-prev:hover, .work .slick-prev:focus, .work .slick-prev {
+    left: -25px;
+  }
+  .work .slick-next:hover, .work .slick-next:focus, .work .slick-next {
+    right: -25px;
+  }
+}
+@media (min-width: 768px) {
+  /* ##################################################################### */
+  /*	タブレット
+/* ##################################################################### */
+.mv .slick-prev, .mv .slick-next {
+  top: 45%;
+  -webkit-transform: translate(0, -45%);
+  -ms-transform: translate(0, -45%);
+  transform: translate(0, -45%);
+}	
+.mv .slick-prev:hover, .mv .slick-prev:focus, .mv .slick-prev {
+  left: 45px;
+}
+.mv .slick-next:hover, .mv .slick-next:focus, .mv .slick-next {
+  right: 45px;
+}	
+.mv .slick-prev:before {
+  width: 30px;
+  height: 60px;
+}
+.mv .slick-next:before {
+  width: 30px;
+  height: 60px;
+}	
+}
+@media (min-width: 992px) {
+  /* ##################################################################### */
+  /*	タブレット大
+/* ##################################################################### */
+  /* ===================================================================== */
+  /*	
+/* ===================================================================== */
+
+}
+@media (min-width: 1200px) {
+  /* ##################################################################### */
+  /*	PC　コンピュータ
+/* ##################################################################### */
+  /* ===================================================================== */
+  /*	
+/* ===================================================================== */
+}

@@ -1,0 +1,341 @@
+{
+  "apiFields": [
+    {
+      "idValue": "prdOldId01",
+      "fieldId": "old_id",
+      "name": "旧ID",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "idValue": "prdName002",
+      "fieldId": "name",
+      "name": "製品名",
+      "kind": "text",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "idValue": "prdModel03",
+      "fieldId": "model",
+      "name": "型番",
+      "kind": "text",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "idValue": "prdCateg04",
+      "fieldId": "category",
+      "name": "カテゴリー（product_categories参照）",
+      "kind": "relation",
+      "required": true,
+      "referencedApiEndpoint": null
+    },
+    {
+      "idValue": "prdOrder05",
+      "fieldId": "order",
+      "name": "並び順",
+      "kind": "number",
+      "required": false
+    },
+    {
+      "idValue": "prdBody006",
+      "fieldId": "body",
+      "name": "本文",
+      "kind": "textArea",
+      "required": false
+    },
+    {
+      "idValue": "prdLImg007",
+      "fieldId": "list_image",
+      "name": "一覧画像（W1080xH528px）",
+      "kind": "media",
+      "required": false
+    },
+    {
+      "idValue": "prdLCap008",
+      "fieldId": "list_image_caption",
+      "name": "一覧説明",
+      "kind": "text",
+      "required": false,
+      "isUnique": false
+    },
+    {
+      "idValue": "prdMImg009",
+      "fieldId": "main_image",
+      "name": "メイン画像（W1110以上xH任意px）",
+      "kind": "media",
+      "required": false
+    },
+    {
+      "idValue": "prdMCap010",
+      "fieldId": "main_image_caption",
+      "name": "メイン画像キャプション",
+      "kind": "text",
+      "required": false,
+      "isUnique": false
+    },
+    {
+      "idValue": "prdYtId011",
+      "fieldId": "youtube_id",
+      "name": "Youtube動画ID",
+      "kind": "text",
+      "required": false,
+      "isUnique": false
+    },
+    {
+      "idValue": "prdYtCap12",
+      "fieldId": "youtube_caption",
+      "name": "Youtube動画キャプション",
+      "kind": "text",
+      "required": false,
+      "isUnique": false
+    },
+    {
+      "idValue": "prdDescs13",
+      "fieldId": "descriptions",
+      "name": "説明リスト（旧：説明1〜7）",
+      "kind": "repeater",
+      "required": false,
+      "customFieldCreatedAtList": [
+        "2026-01-01T00:00:11.000Z"
+      ]
+    },
+    {
+      "idValue": "prdFiles14",
+      "fieldId": "files",
+      "name": "関連ファイルリスト（旧：関連ファイル1〜3）",
+      "kind": "repeater",
+      "required": false,
+      "customFieldCreatedAtList": [
+        "2026-01-01T00:00:12.000Z"
+      ]
+    },
+    {
+      "idValue": "prdFuncs15",
+      "fieldId": "functions",
+      "name": "機能リスト（旧：製品機能テーブル）",
+      "kind": "repeater",
+      "required": false,
+      "customFieldCreatedAtList": [
+        "2026-01-01T00:00:13.000Z"
+      ]
+    },
+    {
+      "idValue": "prdOptns16",
+      "fieldId": "options",
+      "name": "オプションリスト（旧：製品オプションテーブル）",
+      "kind": "repeater",
+      "required": false,
+      "customFieldCreatedAtList": [
+        "2026-01-01T00:00:13.000Z"
+      ]
+    },
+    {
+      "idValue": "prdSpecs17",
+      "fieldId": "specs",
+      "name": "仕様リスト（旧：仕様1〜9）",
+      "kind": "repeater",
+      "required": false,
+      "customFieldCreatedAtList": [
+        "2026-01-01T00:00:11.000Z"
+      ]
+    },
+    {
+      "idValue": "prdSites18",
+      "fieldId": "sites",
+      "name": "関連サイトリスト（旧：関連サイト1〜3）",
+      "kind": "repeater",
+      "required": false,
+      "customFieldCreatedAtList": [
+        "2026-01-01T00:00:14.000Z"
+      ]
+    },
+    {
+      "idValue": "prdLinks19",
+      "fieldId": "links",
+      "name": "リンクコードリスト（旧：リンク1〜4コード）",
+      "kind": "repeater",
+      "required": false,
+      "customFieldCreatedAtList": [
+        "2026-01-01T00:00:15.000Z"
+      ]
+    },
+    {
+      "idValue": "prdAmazn20",
+      "fieldId": "amazon_url",
+      "name": "AmazonURL",
+      "kind": "text",
+      "required": false,
+      "isUnique": false
+    },
+    {
+      "idValue": "prdNote021",
+      "fieldId": "note",
+      "name": "メモ",
+      "kind": "textArea",
+      "required": false
+    }
+  ],
+  "customFields": [
+    {
+      "createdAt": "2026-01-01T00:00:11.000Z",
+      "fieldId": "cf_table_row",
+      "name": "項目名・内容セット",
+      "fields": [
+        {
+          "idValue": "cfRowTitl1",
+          "fieldId": "title",
+          "name": "項目名",
+          "kind": "text",
+          "required": true,
+          "isUnique": false
+        },
+        {
+          "idValue": "cfRowBody2",
+          "fieldId": "body",
+          "name": "内容",
+          "kind": "textArea",
+          "required": false
+        }
+      ],
+      "position": [
+        [
+          "cfRowTitl1"
+        ],
+        [
+          "cfRowBody2"
+        ]
+      ],
+      "updatedAt": "2026-01-01T00:00:11.000Z",
+      "viewerGroup": "cf_row"
+    },
+    {
+      "createdAt": "2026-01-01T00:00:12.000Z",
+      "fieldId": "cf_file",
+      "name": "関連ファイルセット",
+      "fields": [
+        {
+          "idValue": "cfFilPath1",
+          "fieldId": "file",
+          "name": "ファイルURLまたはパス（例: /files/sample.pdf）",
+          "kind": "text",
+          "required": true,
+          "isUnique": false
+        },
+        {
+          "idValue": "cfFilTitl2",
+          "fieldId": "title",
+          "name": "関連ファイル名",
+          "kind": "text",
+          "required": false,
+          "isUnique": false
+        }
+      ],
+      "position": [
+        [
+          "cfFilPath1"
+        ],
+        [
+          "cfFilTitl2"
+        ]
+      ],
+      "updatedAt": "2026-01-01T00:00:12.000Z",
+      "viewerGroup": "cf_fil"
+    },
+    {
+      "createdAt": "2026-01-01T00:00:13.000Z",
+      "fieldId": "cf_card",
+      "name": "機能・オプションカード",
+      "fields": [
+        {
+          "idValue": "cfCrdTitl1",
+          "fieldId": "title",
+          "name": "タイトル",
+          "kind": "text",
+          "required": true,
+          "isUnique": false
+        },
+        {
+          "idValue": "cfCrdImag2",
+          "fieldId": "image",
+          "name": "画像（W1080xH528px）",
+          "kind": "media",
+          "required": false
+        },
+        {
+          "idValue": "cfCrdCapt3",
+          "fieldId": "image_caption",
+          "name": "画像キャプション",
+          "kind": "textArea",
+          "required": false
+        }
+      ],
+      "position": [
+        [
+          "cfCrdTitl1"
+        ],
+        [
+          "cfCrdImag2",
+          "cfCrdCapt3"
+        ]
+      ],
+      "updatedAt": "2026-01-01T00:00:13.000Z",
+      "viewerGroup": "cf_crd"
+    },
+    {
+      "createdAt": "2026-01-01T00:00:14.000Z",
+      "fieldId": "cf_site",
+      "name": "関連サイトセット",
+      "fields": [
+        {
+          "idValue": "cfSitUrl01",
+          "fieldId": "url",
+          "name": "関連サイトURL",
+          "kind": "text",
+          "required": true,
+          "isUnique": false
+        },
+        {
+          "idValue": "cfSitTitl2",
+          "fieldId": "title",
+          "name": "関連サイト名",
+          "kind": "text",
+          "required": false,
+          "isUnique": false
+        }
+      ],
+      "position": [
+        [
+          "cfSitUrl01"
+        ],
+        [
+          "cfSitTitl2"
+        ]
+      ],
+      "updatedAt": "2026-01-01T00:00:14.000Z",
+      "viewerGroup": "cf_sit"
+    },
+    {
+      "createdAt": "2026-01-01T00:00:15.000Z",
+      "fieldId": "cf_link_code",
+      "name": "リンクHTMLコード",
+      "fields": [
+        {
+          "idValue": "cfLnkCode1",
+          "fieldId": "code",
+          "name": "リンクコード（HTML）",
+          "kind": "textArea",
+          "required": true
+        }
+      ],
+      "position": [
+        [
+          "cfLnkCode1"
+        ]
+      ],
+      "updatedAt": "2026-01-01T00:00:15.000Z",
+      "viewerGroup": "cf_lnk"
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import ServiceNav4 from '../../components/ServiceNav4.astro';
+import {
+  getProductCategories,
+  getProducts,
+  PRODUCT_CATEGORY_GROUPS,
+  normalizeGroupKey,
+  getProductGroup,
+  getSlug,
+  outputHtml,
+  withBase,
+  type GroupMaster,
+  type ProductCategoryItem,
+  type ProductItem,
+} from '../../lib/microcms';
+
+export async function getStaticPaths() {
+  const allCategories = await getProductCategories();
+  const allProducts = await getProducts();
+
+  const paths = [];
+
+  const groupKeys = ['table', 'other', 'furniture', 'oem'] as const;
+  for (const gKey of groupKeys) {
+    const groupMaster = PRODUCT_CATEGORY_GROUPS[gKey];
+    const entries = allCategories.filter((cat) => normalizeGroupKey(cat.group) === gKey);
+    paths.push({
+      params: { slug: gKey },
+      props: {
+        pageType: 'group' as const,
+        group: groupMaster,
+        categories: entries,
+        category: null,
+        products: [],
+      },
+    });
+  }
+
+  for (const cat of allCategories) {
+    const gKey = normalizeGroupKey(cat.group);
+    const groupMaster = getProductGroup(gKey);
+    const catSlug = getSlug(cat);
+    const products = allProducts.filter((p) => {
+      if (!p.category) return false;
+      return p.category.id === cat.id || getSlug(p.category) === catSlug;
+    });
+
+    paths.push({
+      params: { slug: `${gKey}-${catSlug}` },
+      props: {
+        pageType: 'category' as const,
+        group: groupMaster,
+        categories: [],
+        category: cat,
+        products,
+      },
+    });
+
+    if (cat.id !== catSlug) {
+      paths.push({
+        params: { slug: `${gKey}-${cat.id}` },
+        props: {
+          pageType: 'category' as const,
+          group: groupMaster,
+          categories: [],
+          category: cat,
+          products,
+        },
+      });
+    }
+  }
+
+  return paths;
+}
+
+interface Props {
+  pageType: 'group' | 'category';
+  group: GroupMaster;
+  categories: ProductCategoryItem[];
+  category: ProductCategoryItem | null;
+  products: ProductItem[];
+}
+
+const { pageType, group, categories, category, products } = Astro.props;
+
+const title =
+  pageType === 'group'
+    ? `${group.label} | サービス | GAIA EDUCATION for CORPORATION | 株式会社ガイアエデュケーション`
+    : `${category!.name} | ${group.label} | サービス | GAIA EDUCATION for CORPORATION | 株式会社ガイアエデュケーション`;
+
+const keywords =
+  pageType === 'group'
+    ? `${group.label},サービス,パソコンデスク,ICT,オフィス,官公庁,モニタ昇降,PC収納,PC保管,PCセキュリティ,ガイアエデュケーション,コーポレーション,GAIA EDUCATION for CORPORATION`
+    : `${category!.name},${group.label},サービス,パソコンデスク,ICT,オフィス,官公庁,モニタ昇降,PC収納,PC保管,PCセキュリティ,ガイアエデュケーション,コーポレーション,GAIA EDUCATION for CORPORATION`;
+
+const description =
+  pageType === 'group'
+    ? `GAIA EDUCATION for CORPORATIONのサービス ${group.label} です。`
+    : `GAIA EDUCATION for CORPORATIONのサービス ${category!.name} です。`;
+---
+<MainLayout
+  title={title}
+  keywords={keywords}
+  description={description}
+  cssFiles={[
+    '/service/detail.css',
+    '/function/css/table.css',
+    `/function/css/local/${group.group}.css`,
+  ]}
+  pageTitleSmall="サービス"
+  pageTitleEn="SERVICE"
+  hideTwoColumnContainer={true}
+>
+  <Fragment slot="breadCrumb">
+    <li class="breadcrumb-item"><a href={withBase('/service/')}>サービス</a></li>
+    {pageType === 'group' ? (
+      <li class="breadcrumb-item">{group.label}</li>
+    ) : (
+      <>
+        <li class="breadcrumb-item"><a href={withBase(`/service/${group.name}/`)}>{group.label}</a></li>
+        <li class="breadcrumb-item">{category!.name}</li>
+      </>
+    )}
+  </Fragment>
+
+  <Fragment slot="wideFreeArea">
+    <ServiceNav4 />
+
+    {pageType === 'group' ? (
+      <>
+        <section>
+          <div class="container-fluid">
+            <div class="container mb-4">
+              <div class="h_flat">
+                <h2>{group.label}</h2>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <img src={withBase(group.mainImage)} width="100%" alt={group.label} class="img-fluid"/>
+                </div>
+                <div class="col-12 ">
+                  <p class="bg-gray2" set:html={group.descriptionHtml} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="container-fluid serviceArea">
+            <div class="container">
+              <div class="h_flat">
+                <h2>製品カテゴリ</h2>
+              </div>
+              <div class="row">
+                {categories.map((cat) => {
+                  const gKey = normalizeGroupKey(cat.group);
+                  const catSlug = getSlug(cat);
+                  return (
+                    <div class="col-12 col-md-6 card_outer">
+                      <div class="card">
+                        <div class="card-header">{cat.name}</div>
+                        <a href={withBase(`/service/${gKey}-${catSlug}/`)}>
+                          <img
+                            src={withBase(cat.list_image?.url || '/function/images/no_image.png')}
+                            alt={cat.name}
+                            class="img-fluid img-inside-border"
+                          />
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
+    ) : (
+      <>
+        <section>
+          <div class="container-fluid">
+            <div class="container mb-4">
+              <div class="h_flat">
+                <h2>{category!.name}</h2>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <img
+                    src={withBase(category!.main_image?.url || '/function/images/no_image.png')}
+                    width="1140"
+                    alt={category!.name}
+                    class="img-fluid img-inside-border"
+                  />
+                </div>
+                {category!.body && (
+                  <div class="col-12 ">
+                    <p class="bg-gray2" set:html={outputHtml(category!.body)} />
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {products.length > 0 && (
+          <section>
+            <div class="container-fluid serviceArea">
+              <div class="container">
+                <div class="h_flat">
+                  <h2>製品</h2>
+                </div>
+                <div class="row">
+                  {products.map((product) => {
+                    const gKey = normalizeGroupKey(category!.group);
+                    const catSlug = getSlug(category!);
+                    const prodSlug = getSlug(product);
+                    return (
+                      <div class="col-12 col-md-6 card_outer">
+                        <div class="card">
+                          <div class="card-header">{product.name}</div>
+                          <a href={withBase(`/service/${gKey}-${catSlug}/product/${prodSlug}/`)}>
+                            <img
+                              src={withBase(product.list_image?.url || '/function/images/no_image.png')}
+                              alt={product.name}
+                              class="img-fluid img-inside-border"
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+      </>
+    )}
+  </Fragment>
+</MainLayout>

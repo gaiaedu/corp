@@ -1,0 +1,27 @@
+---
+/**
+ * お知らせ年別アーカイブサイドナビゲーション (resources/views/front/partial/local_information.blade.php)
+ */
+import { withBase } from '../lib/microcms';
+
+export interface Props {
+  years: string[];
+  currentYear?: string | null;
+}
+const { years = [], currentYear = null } = Astro.props;
+---
+<nav>
+  <div class="localTitle">
+    <div class="h_ribon">
+      <p class="title">Menu</p>
+    </div>
+  </div>
+  <ul id="info-year-nav">
+    <li><a href={withBase('/information/')} data-year="" class={!currentYear ? 'on' : ''}>お知らせ</a></li>
+    {years.map((year) => (
+      <li>
+        <a href={withBase(`/information/?year=${year}`)} data-year={year} class={year === currentYear ? 'on' : ''}>{year}</a>
+      </li>
+    ))}
+  </ul>
+</nav>

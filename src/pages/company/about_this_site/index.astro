@@ -1,0 +1,89 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import CompanySideNav from '../../../components/CompanySideNav.astro';
+import { withBase } from '../../../lib/microcms';
+---
+<MainLayout
+  title="サイトの利用上の注意 | 会社概要 | GAIA EDUCATION for CORPORATION | 株式会社ガイアエデュケーション"
+  keywords="サイトの利用上の注意,パソコンデスク,ICT,オフィス,官公庁,モニタ昇降,PC収納,PC保管,PCセキュリティ,ガイアエデュケーション,コーポレーション,GAIA EDUCATION for CORPORATION"
+  description="株式会社ガイアエデュケーションのサイトの利用上の注意です。"
+  cssFiles={[
+    '/company/detail.css',
+    '/function/css/table.css',
+    '/function/css/local/list06.css',
+  ]}
+  pageTitleSmall="会社概要"
+  pageTitleEn="COMPANY"
+>
+  <Fragment slot="breadCrumb">
+    <li class="breadcrumb-item"><a href={withBase('/company/')}>会社概要</a></li>
+    <li class="breadcrumb-item">サイトの利用上の注意</li>
+  </Fragment>
+
+  <Fragment slot="contentsArea">
+    <section>
+      <div class="h_flat">
+        <h2>サイトの利用上の注意</h2>
+      </div>
+      <p>当サイトは 株式会社ガイアエデュケーション(以下、「当社」) が運営しております。 </p>
+      <div class="basic">
+        <dl>
+          <dt>推奨ブラウザ</dt>
+          <dd>Internet Explorer 11<br>
+            Microsoft Edge 最新版<br>
+            Google Chrome 最新版<br>
+            Mozilla Firefox 最新版<br>
+            Safari 最新版</dd>
+          <dt>JavaScriptについて</dt>
+          <dd>当サイトでは、いくつかのページでJavaScriptを使用しております。<br>
+            ブラウザの設定でJavaScriptを無効にされている場合、機能、表示が正しく動作しないことがあります。JavaScriptを有効にしてご覧ください。<br>
+            Internet Explorerにおけるセキュリティレベルの設定は「中」に設定してください。設定方法は各ブラウザのヘルプをご参照ください。</dd>
+          <dt>著作権について</dt>
+          <dd>当サイト内にあるデータの著作権・所有権その他の権利は、運営者である当社が保有いたします。無許可の販売・再配布などはできません。</dd>
+          <dt>商標について</dt>
+          <dd>当サイトに掲載している会社名、サービス名、製品名などはいずれも当社あるいは各企業、団体の商標または登録商標です。当サイトでは説明の便宜上、その商品名、団体名を記載する場合がありますが、それらの商標権の侵害を行う意思や目的はありません。</dd>
+          <dt>免責事項</dt>
+          <dd>
+            <div>
+              <ol>
+                <li>当社は、当サイトに情報を掲載するにあたり、十分に検討・確認作業を行っておりますが、その内容に関し、その正確性、有用性、確実性、安全性、特定目的に対する合目的性その他いかなる保証もするものではありません。コンテンツご利用により、万一何らかの損害が発生したとしても、当事務所は一切責任を負いません。</li>
+                <li>当社は、当サイトの構成、利用条件、URLおよびコンテンツ等を、予告なしに変更または中止し、あるいは当サイトの運営を予告なしに中断または中止することがあります。なお、当社は理由の如何関わらず、これら変更及び当サイトの運用を中断または中止によって生じるいかなる損害についても責任を負うものではありません。</li>
+                <li>当社から、もしくは当サイトにリンクを張っている当社以外の第三者のウェブサイト(以下｢リンクサイト｣と称します)の内容は、それぞれ各社の責任で管理されるものであり、当社の管理下にあるものではありません。また、当社とリンクサイトとの間に提携などの特別な関係があるということを意味するものではありません。当社は、リンクサイトの内容について、また、それらのご利用により生じたいかなる損害についても責任を負いません。</li>
+              </ol>
+            </div>
+          </dd>
+          <dt>当サイトへのご質問について</dt>
+          <dd>当サイトへのご質問などがありましたら、お問い合わせフォームからお問い合わせいただくか、下記までご連絡ください。</dd>
+        </dl>
+        <div class="basic">
+          <table border="0">
+            <tbody>
+              <tr>
+                <th>会社名</th>
+                <td>株式会社ガイアエデュケーション<br>
+                  （英文表記： Gaia Education Co.,Ltd.)</td>
+              </tr>
+              <tr>
+                <th>所在地</th>
+                <td>〒107-0061 東京都港区北青山1丁目4番6号 246青山</td>
+              </tr>
+              <tr>
+                <th>TEL</th>
+                <td><a href="tel:03-6809-3881">03-6809-3881</a></td>
+              </tr>
+              <tr>
+                <th>受付時間</th>
+                <td>月曜日～金曜日（祝祭日を除く）10時～16時</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </Fragment>
+
+  <Fragment slot="localArea">
+    <CompanySideNav />
+  </Fragment>
+</MainLayout>
+

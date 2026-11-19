@@ -1,0 +1,739 @@
+@charset "utf-8";
+/* CSS Document */
+/* ##################################################################### */
+/*	モバイルレ : 480 px およびそれ以下
+/* ##################################################################### */
+/* ===================================================================== */
+/*	基本設定
+/* ===================================================================== */
+/* フォント基本設定　*/
+
+body {
+	color: #333333;
+}
+
+a {
+	color: #333333;
+}
+
+a:hover{
+	color:#148acc;
+}
+
+h1, h2/*, h3, h4, h5*/{
+	color: #333333;
+}
+h3, h4, h5{
+	color: #148acc;
+}
+
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover{
+	color: #009342;
+}
+
+
+button:focus{
+	outline: none;
+    /* outline: 5px auto -webkit-focus-ring-color; */
+}
+
+.ud_line:before {
+    background-color: #148acc;
+}
+
+.newsLists a:hover{
+	color:#148acc;
+}
+
+.basic h3{
+	border-bottom: 2px solid #D5D5D5;
+	color: #009342;
+	font-size: 110%;
+	padding-bottom: 0.5em;
+	margin-bottom: 1em;
+	font-weight: bold;
+}
+.primaryArea li{
+    background-color: #0f7332;
+/*    font-family: "Font Awesome 5 Brands";
+    content: '\f099';*/
+}
+
+
+
+.primaryArea li a {
+    color: #fff;
+}
+.bg-red{
+    background-color: #e31b13!important;
+}
+.bg-blue{
+    background-color: #054496!important;
+}
+.bg-lightblue{
+    background-color: #b4c7e7!important;
+}
+.bg-lightgray{
+    background-color: #d9d9d9!important;
+}
+/*.bg-lighrgreen{
+    background-color: #8ec42b!important;
+}*/
+.bg-orange{
+    background-color: #E15C24!important;
+}
+.bg-black{
+    background-color: #040000!important;
+}
+.bg-gray{
+    background-color: #3f3f3f!important;
+}
+.bg-gray2{
+    background-color: #dfe2e4!important;
+}
+.bg-gray3{
+    background-color: #9b9b9b!important;
+}
+
+
+.bg-red2{
+    background-color: #d52419!important;
+}
+.bg-brown{
+    background-color: #A57C52!important;
+}
+.bg-hato-GreenDark{
+	background-color: #3aab35!important;
+	color: #FFFFFF;
+}
+.bg-hato-GreenLight{
+	background-color: #e2f0d9!important;
+}
+
+.bg-hato-RedDark{
+	background-color: #c00000!important;
+	color: #FFFFFF;
+}
+
+.bg-hato-BlueDark{
+	background-color: #2f5597!important;
+	color: #FFFFFF;
+}
+
+.txt-white{
+	color: #fff;
+}
+
+.txt-green,
+.text-hato-Green{
+	color: #009342;
+}
+.txt-green a,
+.text-hato-Green a{
+	color: #009342;
+}
+.txt-green a:hover,
+.text-hato-Green a:hover{
+	color: #82C080;
+}
+.txt-blue{
+    color: #054496;
+}
+.txt-blue a{
+    color: #054496;
+}
+.txt-gray{
+    color: #9C9C9C;
+}
+.txt-black{
+    color: #333!important;
+}
+.txt-brown{
+    color: #A57C52;
+}
+/* member search */
+.bg-green{
+    background-color: #dae9d2!important;
+}
+
+.bg-tama{
+    background-color: #dcceee!important;
+}
+.bg-chubu{
+    background-color: #ffe6e9!important;
+}
+.bg-jyouhoku{
+    background-color: #98ccf7!important;
+}
+.bg-jyoutou{
+    background-color: #f8c6b5!important;
+}
+.bg-toshin{
+    background-color: #fdf4b2!important;
+}
+.bg-jyousai_jyounan{
+    background-color: #b7d6a3!important;
+}
+/* */
+
+.inquiryBox{
+	background-color: #dfe2e4;
+}
+
+
+.black h1,
+.black h2{
+    background-color: #040000;
+}
+.green_link a{
+    color:#009342;
+}
+.blue h1,
+.blue h2{
+    background-color: #0a46aa;
+}
+
+.lightblue{
+    padding: 4%;
+}
+
+.lightblue h2{
+    background-color: #b4c7e7!important;
+    text-align: left;
+    color: #333!important;
+    border: 1px solid #dae3f3;
+}
+.grayD h2{
+    background-color: #4d4c4d;
+}
+.gray h2{
+    background-color: #7F8080;
+}
+.gray .more{
+    background-color: #7F8080;
+}
+.brownM h1,
+.brownM h2{
+    background-color: #aa9959;
+    text-align: left;
+}
+.red h3,
+.red h2{
+    background-color: #d51e19;
+}
+.red h3{
+    background-color: #d51e19;
+}
+.red .more_w,
+.orange .more{
+    background-color: #e15c24;
+}
+
+.blue .lineBox_inn{
+    border: 3px solid #0a46aa;
+    border-top:none;
+}
+
+.lightblue .lineBox_inn{
+    border: 1px solid #dae3f3;
+    border-top:none;
+}
+
+.grayD .lineBox_inn{
+    border: 1px solid #4d4c4d;
+    border-top:none;
+}
+
+
+.brownM .lineBox_inn{
+    border: 1px solid #aa9959;
+    border-top:none;
+}
+.black .lineBox_inn{
+    border: 3px solid #3f3f3f;
+    border-top:none;
+}
+
+/*.thanks{
+	border: 1px solid #ccc;
+	background-color: #efefef;
+}*/
+.webF {
+	background-color: #040000;
+    padding: 0px;
+}
+
+.orange .lineBox_inn,
+.red .lineBox_inn{
+    border: 3px solid #d51e19;
+    border-top:none;
+}
+
+
+.dlBrown dt{
+    color: #a57c52;
+    font-weight: normal;
+}
+
+.navbar .navbar-nav > li.globalnavi a {
+	/*color: #002E5D;*/
+	color: #fff;
+}
+
+.navbar .navbar-nav > li > a{
+    color: #fff!important;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #b81b30;
+    background-color: #EBEBEB;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+	background-color: #009342;
+}
+
+
+
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #EFEFEF;
+    border-radius: 0rem;
+}
+
+
+
+.label-category-base {
+    background-color: #000;
+}
+
+.item2 {
+    background-color: #b81b30;
+    color: #FFFFFF;
+}
+.item2 a{
+    color: #FFFFFF;
+}
+.item2 a:hover{
+	color: #ccc;
+}
+
+.item2 .card-header {
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom: none; 
+}
+.point h2 {
+    color: rgba(219,0,3,1.00);
+}
+.point h3 {
+    color:#333333;
+}
+/* pagination */
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #3f3f3f;
+    border-color: #3f3f3f;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #3f3f3f;
+    border-color: #3f3f3f;
+}
+.page-item a{
+    color: #3f3f3f;
+}
+.page-item a:hover{
+    color: #3f3f3f;
+}
+.page-item.active a:hover {
+    z-index: 1;
+    color: #fff;
+    background-color: #3f3f3f;
+    border-color: #3f3f3f;
+}
+
+/* */
+
+.navbar .navbar-nav .dropdown-item{
+	background-color: #00b7ce;
+}
+   
+.navbar .navbar-nav .dropdown-item:hover{
+	background-color: #00c0d8;
+    color: #fff;
+}
+
+.important1{
+	color: #3aab35;	
+}
+
+.important2{
+	color: #a57c52;	
+}
+.important3{
+	color: #c00000;
+}
+.important4{
+	color: rgba(48,123,191,1.00);
+}
+
+
+.frame{
+	padding-top: 1em;
+	padding-right: 1em;
+	padding-left: 1em;
+	border: 1px solid #ccc;
+	margin-bottom: 2em;
+}
+.frame2{
+	color: #FFFFFF;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-right: 1em;
+	padding-left: 1em;
+	margin-bottom: 2em;
+	background-color: #2F5597;
+}
+
+/* ===================================================================== */
+/*	フッターのカラー
+/* ===================================================================== */
+footer{
+        position: relative;
+}
+
+footer, footer a{
+    color: #fff;
+}
+
+footer a:hover{
+    opacity: 0.8;
+}
+
+footer .section1 {
+    /*background-color:#ccc;*/
+}
+footer .section1,
+footer .section1 a {
+    color: #000;
+}
+footer .section2 {
+    background-color:#040000;
+    /*background-image: url("../images/white_bk.gif");*/
+}
+
+footer .section2 a {
+    /*color: #0f7332;*/
+    color: #fff;
+}
+
+footer .section3 {
+    background-color:#040000;
+}
+/* ===================================================================== */
+/*	見出し飾りの色
+/* ===================================================================== */
+/* ===================================================================== */
+/*	見出し　リボン
+/* ===================================================================== */
+/*	見出し　リボン h1 */
+/*.h_ribon h1{
+	background-color: #000000;
+	color: #FFFFFF;
+}
+.h_ribon h1::before{
+	border-right-color: #ccc;	
+}*/
+/*	見出し　リボン h1 */
+/*.h_ribon h2{
+	background-color: #00b7ce;
+	color: #FFFFFF;
+}
+.h_ribon h2::before{
+	border-right-color: #ccc;	
+}*/
+/*	見出し　リボン h3 */
+/*.h_ribon h3{
+	background-color: #000000;
+	color: #FFFFFF;
+}
+.h_ribon h3::before{
+	border-right-color: #ccc;
+}
+*/
+.h_ribon p {
+    background-color: #040000;
+    color: #FFFFFF;
+}
+/* ===================================================================== */
+/*	見出し　フラット
+/* ===================================================================== */
+/*	見出し　フラット h1 */	
+ .h_flat h1,  .h_flat p{
+	background-color: #040000;
+	color: #FFFFFF;
+    /* font-size: 1.7rem;*/
+}
+
+ .h_flat h2{
+	background-color: #040000;
+	color: #FFFFFF;
+    /* font-size: 1.7rem;*/
+}
+ .h_flat h3{
+	color: #040000;
+    /* font-size: 1.7rem;*/
+}
+/*.h_flat h1, .h_flat p{
+	font-size: 180%;
+}*/
+
+.h_flat p{
+	padding-left: 0.3em;
+}
+
+
+.h_flat a h1:hover, .h_flat a h2:hover, .h_flat a h3:hover{
+	background-color: #0f7332;
+}
+
+
+/* ===================================================================== */
+/*	見出し　サークルアイコン
+/* ===================================================================== */
+
+.circle h1, .circle h2, .circle h3, .circle h4{
+	font-size: 140%;
+}
+
+.circle h1::before, .circle h2::before, .circle h3::before, .circle h4::before{
+	color: #00b7ce}
+
+/* ===================================================================== */
+/*	見出し　フリーアイコン
+/* ===================================================================== */
+
+
+
+
+/* ===================================================================== */
+/*	見出し　basic
+/* ===================================================================== */
+/*	見出し　basic h2 */	
+
+.basic h1 {
+    font-size: 160%;
+}
+.basic h2 {
+    font-size: 150%;
+	margin-top: 2em;
+}
+.basic h3 {
+	margin-top: 2em;
+}
+
+
+.basic h1, .basic h2 {
+	color: #000;
+	position: relative;
+	padding-bottom: 0.3em;
+	margin-bottom: 1em;
+}
+.basic h1::after, .basic h2::after {
+    background-color: #00b7ce;
+}
+.basic h1::after, .basic h2::after {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    z-index: 2;
+    content: '';
+    width: 7%;
+    height: 1px;
+	
+}
+
+/* ===================================================================== */
+/*	タイトルのグラデのカラー
+/* ===================================================================== */
+.pageTitleArea{
+/*	margin-top: -5px;
+    background: #EFEFEF;*/
+	background-color: #000;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.pageTitleArea p{
+	padding-top:20px;
+	padding-bottom: 10px;
+	font-size: 150%;
+
+}
+
+/* ===================================================================== */
+/*	フォームの中の色
+/* ===================================================================== */
+.font-required {
+    color: #FF0004;
+}
+.form-control {
+	color: #B3B3B3;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #B3B3B3;
+}
+
+
+/* ===================================================================== */
+/*	テーブルのカラー
+/* ===================================================================== */
+
+table {
+	/*border-top: 2px solid #00195E;*/
+    border-top: 1px solid #ccc;
+}
+
+/* ===================================================================== */
+/*	アイコンのカラー
+/* ===================================================================== */
+.fa-external-link-alt{
+	color: #fff;
+}
+
+.fa-file-pdf{
+	color: #AA0002;	
+}
+
+.fa-file-excel{
+	color: #146F02;
+}
+
+
+/* ##################################################################### */
+/*	タブレット小
+/* ##################################################################### */
+@media (min-width: 480px) {
+/* ===================================================================== */
+/*	タブレット小　共通基本設定
+/* ===================================================================== */
+
+	
+}
+
+/* ##################################################################### */
+/*	タブレット大
+/* ##################################################################### */
+@media (min-width: 768px) {
+/* ===================================================================== */
+/*	タブレット大　共通基本設定
+/* ===================================================================== */
+
+
+}
+
+/* ##################################################################### */
+/*	タブレット大
+/* ##################################################################### */
+@media (min-width: 993px) {
+/* ===================================================================== */
+/*	タブレット大　共通基本設定
+/* ===================================================================== */
+	
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #040000;
+	background-color: #fff;
+}
+    
+/*	.pageTitleArea{
+	margin-top:60px!important;
+}*/
+    
+
+	
+.navbar .navbar-nav > li a{
+	color: #fff!important;
+}
+	
+.navbar .navbar-nav li a.dropdown-item{
+	color: #fff!important;
+	/*border-bottom: 1px dotted #fff;
+	width: 250px;*/
+    width: 100%;
+	    font-size: 14px;
+}	
+
+    
+.navbar .navbar-nav > li > a{
+	color: #fff!important;
+	  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+}
+.navbar .memberNav .navbar-nav > li > a{
+    color: #fff!important;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+}
+    
+    
+.navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
+  color: #fff!important;
+  /*background-color: #e6e6e6;*/
+	border-bottom: 2px solid #148acc;
+  bottom: 0;
+  content: "";
+  display: block;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+}
+
+    
+/*.navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a {
+	height: 40px;
+} */   
+    
+    
+}
+
+
+/* ##################################################################### */
+/*	PC
+/* ##################################################################### */
+@media (min-width: 1200px) {
+/* ===================================================================== */
+/*	PC　　共通基本設定
+/* ===================================================================== */
+	.pageTitleArea{
+/*	margin-top:35px!important;*/
+}	
+	
+	
+.bg-twotone{
+	background-image: -webkit-linear-gradient(270deg,rgba(255,255,255,1.00) 0%,rgba(225,236,255,1.00) 50%,rgba(85,147,255,1.00) 50%,rgba(85,147,255,1.00) 96.89%,rgba(255,255,255,1.00) 96.89%,rgba(255,255,255,1.00) 100%);
+	background-image: -moz-linear-gradient(270deg,rgba(255,255,255,1.00) 0%,rgba(225,236,255,1.00) 50%,rgba(85,147,255,1.00) 50%,rgba(85,147,255,1.00) 96.89%,rgba(255,255,255,1.00) 96.89%,rgba(255,255,255,1.00) 100%);
+	background-image: -o-linear-gradient(270deg,rgba(255,255,255,1.00) 0%,rgba(225,236,255,1.00) 50%,rgba(85,147,255,1.00) 50%,rgba(85,147,255,1.00) 96.89%,rgba(255,255,255,1.00) 96.89%,rgba(255,255,255,1.00) 100%);
+	background-image: linear-gradient(180deg,rgba(255,255,255,1.00) 0%,rgba(225,236,255,1.00) 50%,rgba(85,147,255,1.00) 50%,rgba(85,147,255,1.00) 96.89%,rgba(255,255,255,1.00) 96.89%,rgba(255,255,255,1.00) 100%);
+}
+
+	
+	
+	
+/*.pageTitleArea{
+	margin-top: 27px;
+}*/
+
+.pageTitleArea p{
+	padding-top: 45px;
+	padding-bottom: 25px;
+	font-size: 180%;
+}	
+
+	
+}
+
+

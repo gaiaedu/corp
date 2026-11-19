@@ -1,0 +1,256 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+@import url(https://fonts.googleapis.com/earlyaccess/notosansjp.css);
+/* ##################################################################### */
+/*	モバイルレ : 480 px およびそれ以下
+/* ##################################################################### */
+/*.logo-pos{
+        position: relative;
+    height:80px;
+
+    }*/
+.logo{
+/*    position: absolute;
+    top:8px;
+    left:8;
+    z-index: 10;*/
+    }
+
+.logo .navbar-brand img {
+    height: 35px;
+}  
+.logo .navbar-brand {
+	padding-top: 10px;
+    padding-left: 10px;
+}
+
+.card {
+     display: block!important;
+}
+/* ===================================================================== */
+/*	基本設定
+/* ===================================================================== */
+/* ---- フォント設定 ---- */
+body {
+
+	font-family: Lato, "Noto Sans JP", "游ゴシック Medium", "游ゴシック体", "Yu Gothic Medium", YuGothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	font-size: 16px;
+	line-height: 1.8;
+	color: #333333;
+	word-break: break-all;
+    font-family:-apple-system-subset, "Hiragino Kaku Gothic ProN";
+        /*font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;*/
+   /* font-family:"游ゴシック Medium",YuGothic,YuGothicM,"Hiragino Kaku Gothic ProN","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,sans-serif;*/
+
+}
+
+
+/* ---- 右スクロールを常に出す ---- */
+html {
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+/* ---- リンクアンダーバーを無くす ---- */
+a {
+	text-decoration: none!important;
+}
+/* ---- ナビブロック ---- */
+.navbar {
+	padding: 0rem 1rem;
+}
+/* ---- ページトップ ---- */
+.pagetop {
+	position: fixed;
+	right: 0px;
+	display: block;
+	margin-bottom: 10px;
+	margin-right: 5px;
+}
+/*p a.pagetop {
+    margin-bottom: 0px!important;
+    background-color: red;
+
+}*/
+/* ---- フッター ---- */
+footer{
+	/*padding-top: 50px;*/
+}
+.footer_logo{
+	margin-bottom: 10px;
+}
+
+footer dt {
+	font-weight: bold;
+	font-size: 14px;
+}
+footer .section1{
+	padding-bottom: 30px;
+}
+footer .section1 dd {
+	padding-left: 10px;
+	margin-bottom: 0;
+	font-size: 84%;
+	line-height: 1.8em;
+	font-weight: lighter;
+}
+footer .section2 {
+/*padding: 27px 10px 0px;*/
+padding: 50px 10px 0px;
+}
+footer .section2 li, footer .section2 li a,
+footer .section2 dd, footer .section2 dd a{
+	font-size: 12px;
+	margin-right: 5px;
+	margin-left: 5px;
+	margin-bottom: 0px;
+    font-weight: normal;
+}
+footer .section2 li a {
+    padding-right: 20px;
+    /*border-right: 1px solid #0f7332;*/
+    border-right: 1px solid #fff;
+}
+
+footer .section2 li:last-child a {
+     border-right:none;
+}
+
+footer .section3 {
+	font-size: 60%;
+    padding: 20px 10px;
+}
+footer .section3 p{
+	margin-bottom: 0px;
+}
+footer .row {
+	/*     display: -webkit-box; 
+    display: -ms-flexbox;*/
+	/*display: block;*/
+    
+/*    display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+	margin-right: -15px;
+	margin-left: -15px;*/
+}
+footer a:hover {
+	color: #E1F5FF;
+}
+.footer_txt1{
+  	font-size: 14px;
+}
+.video-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+}
+.video-container iframe, .video-container object, .video-container embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.primaryArea li {
+	margin-left: 0.3em;
+}
+
+.primaryArea li a:hover{
+	color: #D0D0D0;
+    opacity: 0.6;
+}
+
+.primaryNav{
+	/*font-size:250%;*/
+	font-size:14px;;
+}
+
+.primaryNav i{
+	margin-left: 30px;
+}
+
+
+
+
+/* ##################################################################### */
+/*	タブレット小
+/* ##################################################################### */
+@media (min-width: 480px) {
+/* ===================================================================== */
+/*	タブレット小　共通基本設定
+/* ===================================================================== */
+  
+    
+/*body {
+	font-size: 16px!important;
+}*/
+.bg_bottom {
+	background-image: url(../images/bg_bottom.png);
+	background-position: center bottom;
+	background-size: auto auto;
+	height: 258px;
+	background-repeat: no-repeat;
+}
+}
+
+/* ##################################################################### */
+/*	タブレット大
+/* ##################################################################### */
+@media (min-width: 768px) {
+/* ===================================================================== */
+/*	タブレット大　共通基本設定
+/* ===================================================================== */
+     
+
+footer .row {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-right: -15px;
+	margin-left: -15px;
+}
+	
+footer .section2 li, footer .section2 li a {
+	margin-right: 10px;
+}	
+}
+/* ##################################################################### */
+/*	タブレット大
+/* ##################################################################### */
+@media (min-width: 993px) {
+/* ===================================================================== */
+/*	タブレット大　共通基本設定
+/* ===================================================================== */
+.logo{
+	padding: 5px;
+    }
+   
+.logo .navbar-brand{
+    padding: 10px!important;
+    margin: 0px!important;
+}  
+.footer_logo{
+	width: 80%;
+}
+    
+}
+/* ##################################################################### */
+/*	PC
+/* ##################################################################### */
+@media (min-width: 1200px) {
+/* ===================================================================== */
+/*	PC　　共通基本設定
+/* ===================================================================== */
+/*body {
+	font-size: 16px!important;
+}*/
+	
+}

@@ -1,0 +1,73 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import WorkNav4 from '../../components/WorkNav4.astro';
+import {
+  getWorks,
+  WORK_CATEGORIES,
+  normalizeGroupKey,
+  getSlug,
+  withBase,
+} from '../../lib/microcms';
+
+const allWorks = await getWorks();
+const category = WORK_CATEGORIES.table;
+const entries = allWorks.filter((w) => {
+  const k = normalizeGroupKey(w.category);
+  return k === 'table' || k === 'temp';
+});
+---
+<MainLayout
+  title={`${category.label} | 導入事例 | GAIA EDUCATION for CORPORATION | 株式会社ガイアエデュケーション`}
+  keywords={`${category.label},導入事例,パソコンデスク,ICT,オフィス,官公庁,モニタ昇降,PC収納,PC保管,PCセキュリティ,ガイアエデュケーション,コーポレーション,GAIA EDUCATION for CORPORATION`}
+  description={`GAIA EDUCATION for CORPORATIONの導入事例 ${category.label} です。`}
+  cssFiles={[
+    '/work/detail.css',
+    '/function/css/table.css',
+    `/function/css/local/${category.group}.css`,
+  ]}
+  pageTitleSmall="導入事例"
+  pageTitleEn="WORK"
+  hideTwoColumnContainer={true}
+>
+  <Fragment slot="breadCrumb">
+    <li class="breadcrumb-item"><a href={withBase('/work/')}>導入事例</a></li>
+    <li class="breadcrumb-item">{category.label}</li>
+  </Fragment>
+
+  <Fragment slot="wideFreeArea">
+    <WorkNav4 />
+  </Fragment>
+
+  <Fragment slot="cmsArea">
+    <section>
+      <div class="container-fluid serviceArea">
+        <div class="container">
+          <div class="h_flat">
+            <h2>{category.label}</h2>
+          </div>
+          <div class="row">
+            {entries.map((work) => (
+              <div class="col-12 col-md-6 card_outer">
+                <div class="card">
+                  <div class="card-header">{work.label}</div>
+                  <a href={withBase(`/work/${getSlug(work)}/`)}>
+                    <img
+                      src={withBase(work.list_image?.url || '/function/images/no_image.png')}
+                      alt={work.label}
+                      class="img-fluid"
+                    />
+                  </a>
+                  <div class="card-body">
+                    <p class="card-text small">
+                      {work.list_image_caption}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  </Fragment>
+</MainLayout>

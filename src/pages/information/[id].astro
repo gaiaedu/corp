@@ -1,0 +1,157 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import InformationSideNav from '../../components/InformationSideNav.astro';
+import {
+  getInformationList,
+  getInformationCategory,
+  formatDate,
+  getYear,
+  getSlug,
+  outputHtml,
+  getFileIconClass,
+  getFileUrl,
+  withBase,
+  type InformationItem,
+} from '../../lib/microcms';
+
+export async function getStaticPaths() {
+  const entries = await getInformationList();
+  const years = Array.from(
+    new Set(entries.map((item) => getYear(item.published_date || item.publishedAt)))
+  ).sort((a, b) => b.localeCompare(a));
+
+  const paths = [];
+  for (const model of entries) {
+    const slug = getSlug(model);
+    paths.push({
+      params: { id: slug },
+      props: { model, years },
+    });
+    if (model.id !== slug) {
+      paths.push({
+        params: { id: model.id },
+        props: { model, years },
+      });
+    }
+  }
+  return paths;
+}
+
+interface Props {
+  model: InformationItem;
+  years: string[];
+}
+
+const { model, years } = Astro.props;
+const cat = getInformationCategory(model.category);
+const dateStr = formatDate(model.published_date || model.publishedAt, '/');
+const currentYear = getYear(model.published_date || model.publishedAt);
+const subImages = (model.sub_images || []).filter((img) => img.image?.url);
+const files = (model.files || []).filter((f) => f.file);
+const sites = (model.sites || []).filter((s) => s.url);
+---
+<MainLayout
+  title={`${model.title} | お知らせ | GAIA EDUCATION for CORPORATION | 株式会社ガイアエデュケーション`}
+  keywords={`${model.title},お知らせ,パソコンデスク,ICT,オフィス,官公庁,モニタ昇降,PC収納,PC保管,PCセキュリティ,ガイアエデュケーション,コーポレーション,GAIA EDUCATION for CORPORATION`}
+  description={model.title}
+  cssFiles={[
+    '/information/detail.css',
+    '/function/css/local/localON.css',
+  ]}
+  pageTitleSmall="お知らせ"
+  pageTitleEn="INFORMATION"
+>
+  <Fragment slot="breadCrumb">
+    <li class="breadcrumb-item"><a href={withBase('/information/')}>お知らせ</a></li>
+    <li class="breadcrumb-item">{model.title}</li>
+  </Fragment>
+
+  <Fragment slot="contentsArea">
+    <!-- info -->
+    <section>
+      <div class="" id="information">
+        <div class="h_flat">
+          <h2>{model.title}</h2>
+        </div>
+        <div class="row">
+          <div class="col">
+            <p><span class={`cat ${cat.group} mb-3 mr-3`}>{cat.label}</span> {dateStr}</p>
+            <div class="newsLists">
+              {model.main_image?.url && (
+                <div class="mainImage frame pb-1">
+                  <img src={withBase(model.main_image.url)} width="100%" height="auto" alt={model.main_image_caption || ''} class="img-fluid"/>
+                  <span class="small">{model.main_image_caption}</span>
+                </div>
+              )}
+              {model.body && (
+                <p class="mb-5" set:html={outputHtml(model.body)} />
+              )}
+              {model.youtube_id && (
+                <div class="row mb-5">
+                  <div class="col-12 videoBox">
+                    <div class="video-container">
+                      <iframe width="100%" height="760" src={`https://www.youtube.com/embed/${model.youtube_id}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p class="caption">{model.youtube_caption}</p>
+                  </div>
+                </div>
+              )}
+              {subImages.length > 0 && (
+                <div class="row mb-5">
+                  {subImages.map((item) => (
+                    <div class="col-xl-4 col-sm-4 col-md-12 col-lg-4 px-1">
+                      <div class="card col-md-12 col-lg-12 px-1 py-1">
+                        <img class="card-img-top" src={withBase(item.image!.url)} alt={item.caption || ''} />
+                        <div class="card-body py-2 px-1"><p class="card-text">{item.caption}</p></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {files.length > 0 && (
+                <section>
+                  <div class="h_flat">
+                    <h2>ファイルダウンロード</h2>
+                  </div>
+                  <div class="basic mb-5">
+                    <ul>
+                      {files.map((item) => (
+                        <li>
+                          <a href={getFileUrl(item.file)} target="_blank" rel="noopener noreferrer">{item.title || 'ファイルダウンロードはこちら'}</a>
+                          {' '}<i class={getFileIconClass(item.file)}></i>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </section>
+              )}
+              {sites.length > 0 && (
+                <>
+                  <div class="h_flat">
+                    <h2>関連リンク</h2>
+                  </div>
+                  <div class="basic mb-5">
+                    <ul>
+                      {sites.map((item) => (
+                        <li>
+                          <a href={item.url} target="_blank" rel="noopener noreferrer">
+                            {item.title || '関連サイトはこちら'} <i class="fas fa-external-link-square-alt"></i>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /info -->
+  </Fragment>
+
+  <Fragment slot="localArea">
+    <InformationSideNav years={years} currentYear={currentYear} />
+  </Fragment>
+</MainLayout>

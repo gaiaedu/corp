@@ -1,0 +1,138 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import InformationSideNav from '../../components/InformationSideNav.astro';
+import {
+  getInformationList,
+  getInformationCategory,
+  formatDate,
+  getYear,
+  getSlug,
+  withBase,
+} from '../../lib/microcms';
+
+const entries = await getInformationList();
+const years = Array.from(
+  new Set(entries.map((item) => getYear(item.published_date || item.publishedAt)))
+).sort((a, b) => b.localeCompare(a));
+const infoBaseUrl = withBase('/information/');
+---
+<MainLayout
+  title="お知らせ | GAIA EDUCATION for CORPORATION | 株式会社ガイアエデュケーション"
+  keywords="お知らせ,パソコンデスク,ICT,オフィス,官公庁,モニタ昇降,PC収納,PC保管,PCセキュリティ,ガイアエデュケーション,コーポレーション,GAIA EDUCATION for CORPORATION"
+  description="GAIA EDUCATION for CORPORATIONからのお知らせです。"
+  cssFiles={[
+    '/information/detail.css',
+    '/function/css/local/localON.css',
+  ]}
+  pageTitleSmall="お知らせ"
+  pageTitleEn="INFORMATION"
+>
+  <Fragment slot="breadCrumb">
+    <li class="breadcrumb-item">お知らせ</li>
+  </Fragment>
+
+  <Fragment slot="contentsArea">
+    <div class="h_flat">
+      <h2>お知らせ </h2>
+    </div>
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="newsLists">
+          <dl class="row" id="information-list" data-base-url={infoBaseUrl}>
+            {entries.map((model) => {
+              const cat = getInformationCategory(model.category);
+              const dateStr = formatDate(model.published_date || model.publishedAt, '-');
+              const yearStr = getYear(model.published_date || model.publishedAt);
+              return (
+                <>
+                  <dt class="col-lg-4 info-item-dt" data-year={yearStr}>
+                    <time datetime={dateStr} class="date">{dateStr}</time>
+                    <span class={`cat ${cat.group}`}>{cat.label}</span>
+                  </dt>
+                  <dd class="col-lg-8 info-item-dd" data-year={yearStr}>
+                    <a href={withBase(`/information/${getSlug(model)}/`)}>{model.title}</a>
+                  </dd>
+                </>
+              );
+            })}
+          </dl>
+        </div>
+      </div>
+      <div class="col-12">
+        <nav>
+          <ul class="pagination" id="information-pagination"></ul>
+        </nav>
+      </div>
+    </div>
+  </Fragment>
+
+  <Fragment slot="localArea">
+    <InformationSideNav years={years} currentYear={null} />
+  </Fragment>
+
+  <Fragment slot="scripts">
+    <script is:inline>
+      (function() {
+        var PER_PAGE = 10;
+        var params = new URLSearchParams(window.location.search);
+        var currentYear = params.get('year') || '';
+        var currentPage = parseInt(params.get('page') || '1', 10) || 1;
+
+        var listEl = document.getElementById('information-list');
+        var baseUrl = (listEl && listEl.getAttribute('data-base-url')) || '/information/';
+        var dts = Array.prototype.slice.call(document.querySelectorAll('#information-list .info-item-dt'));
+        var dds = Array.prototype.slice.call(document.querySelectorAll('#information-list .info-item-dd'));
+        var navLinks = Array.prototype.slice.call(document.querySelectorAll('#info-year-nav a'));
+
+        // サイドナビのアクティブ状態を更新
+        navLinks.forEach(function(a) {
+          var linkYear = a.getAttribute('data-year') || '';
+          if (linkYear === currentYear) {
+            a.classList.add('on');
+          } else {
+            a.classList.remove('on');
+          }
+        });
+
+        // 対象年の記事をフィルタリング
+        var matchedIndices = [];
+        dts.forEach(function(dt, idx) {
+          var itemYear = dt.getAttribute('data-year') || '';
+          if (!currentYear || itemYear === currentYear) {
+            matchedIndices.push(idx);
+          }
+        });
+
+        var totalPages = Math.ceil(matchedIndices.length / PER_PAGE);
+        if (currentPage > totalPages && totalPages > 0) currentPage = 1;
+        var startIdx = (currentPage - 1) * PER_PAGE;
+        var endIdx = startIdx + PER_PAGE;
+        var visibleSet = new Set(matchedIndices.slice(startIdx, endIdx));
+
+        dts.forEach(function(dt, idx) {
+          var show = visibleSet.has(idx);
+          dt.style.display = show ? '' : 'none';
+          if (dds[idx]) dds[idx].style.display = show ? '' : 'none';
+        });
+
+        // ページネーション描画（10件超の場合のみ表示）
+        var paginationEl = document.getElementById('information-pagination');
+        if (paginationEl && totalPages > 1) {
+          var html = '';
+          for (var p = 1; p <= totalPages; p++) {
+            var q = new URLSearchParams();
+            if (currentYear) q.set('year', currentYear);
+            if (p > 1) q.set('page', String(p));
+            var href = baseUrl + (q.toString() ? '?' + q.toString() : '');
+            if (p === currentPage) {
+              html += '<li class="page-item active"><a class="page-link">' + p + '</a></li>';
+            } else {
+              html += '<li class="page-item"><a class="page-link" href="' + href + '">' + p + '</a></li>';
+            }
+          }
+          paginationEl.innerHTML = html;
+        }
+      })();
+    </script>
+  </Fragment>
+</MainLayout>
