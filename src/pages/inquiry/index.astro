@@ -39,12 +39,15 @@ const bownowProductQueryKey =
                 <span id="selected-product-text" class="ml-1"></span>
               </div>
 
-              <!-- BowNow フォーム起動前に URL パラメータ (_bq_text_field-20261119135348948~) を正規化 -->
+              <!-- BowNow フォーム起動前に URL パラメータ (_bq_text_field-20261119135348948~) を正規化 & DOM 自動入力 -->
               <script is:inline define:vars={{ bownowProductQueryKey }}>
                 (function() {
                   var params = new URLSearchParams(window.location.search);
-                  var bownowKey = bownowProductQueryKey || '_bq_text_field-20261119135348948~';
-                  var productVal = params.get(bownowKey) || params.get('product');
+                  var rawFieldKey = 'text_field-20261119135348948';
+                  var keyWithTilde = '_bq_' + rawFieldKey + '~';
+                  var keyNoTilde = '_bq_' + rawFieldKey;
+
+                  var productVal = params.get(keyWithTilde) || params.get(keyNoTilde) || params.get('product');
                   if (!productVal) {
                     var pName = params.get('product_name') || '';
                     var pModel = params.get('product_model') || '';
@@ -63,12 +66,72 @@ const bownowProductQueryKey =
                     banner.style.display = 'block';
                   }
 
-                  // 2. BowNow クエリキーがURLに無い場合は、BowNowスクリプト実行前にURLへセット
-                  if (bownowKey && !params.has(bownowKey)) {
-                    var newUrl = new URL(window.location.href);
-                    newUrl.searchParams.set(bownowKey, productVal);
+                  // 2. BowNow クエリキー（チルダあり・なし両方）をURLにセット
+                  var newUrl = new URL(window.location.href);
+                  var urlChanged = false;
+                  if (!params.has(keyWithTilde)) {
+                    newUrl.searchParams.set(keyWithTilde, productVal);
+                    urlChanged = true;
+                  }
+                  if (!params.has(keyNoTilde)) {
+                    newUrl.searchParams.set(keyNoTilde, productVal);
+                    urlChanged = true;
+                  }
+                  if (urlChanged) {
                     window.history.replaceState({}, '', newUrl.toString());
                   }
+
+                  // 3. BowNow がフォーム要素（input / textarea）を描画した際に直接値を注入
+                  function fillFormInputs() {
+                    // name や id に text_field-20261119135348948 を含む input/textarea を探索
+                    var inputs = document.querySelectorAll(
+                      'input[name*="' + rawFieldKey + '"], textarea[name*="' + rawFieldKey + '"], ' +
+                      'input[id*="' + rawFieldKey + '"], textarea[id*="' + rawFieldKey + '"]'
+                    );
+
+                    inputs.forEach(function(input) {
+                      if (!input.value) {
+                        input.value = productVal;
+                        input.dispatchEvent(new Event('input', { bubbles: true }));
+                        input.dispatchEvent(new Event('change', { bubbles: true }));
+                      }
+                    });
+
+                    // iframe がある場合（同一オリジンであれば操作を試みる）
+                    var iframes = document.querySelectorAll('#bownow-embed-container iframe');
+                    iframes.forEach(function(iframe) {
+                      try {
+                        var doc = iframe.contentDocument || iframe.contentWindow.document;
+                        if (doc) {
+                          var frameInputs = doc.querySelectorAll(
+                            'input[name*="' + rawFieldKey + '"], textarea[name*="' + rawFieldKey + '"], ' +
+                            'input[id*="' + rawFieldKey + '"], textarea[id*="' + rawFieldKey + '"]'
+                          );
+                          frameInputs.forEach(function(input) {
+                            if (!input.value) {
+                              input.value = productVal;
+                              input.dispatchEvent(new Event('input', { bubbles: true }));
+                              input.dispatchEvent(new Event('change', { bubbles: true }));
+                            }
+                          });
+                        }
+                      } catch (e) {
+                        // クロスオリジン iframe の場合はブラウザセキュリティでアクセス不可（URL パラメータで処理）
+                      }
+                    });
+                  }
+
+                  // レンダリング待ちのため定期的に注入を試行（最大10秒間）
+                  var attempts = 0;
+                  var intervalId = setInterval(function() {
+                    fillFormInputs();
+                    attempts++;
+                    if (attempts > 20) {
+                      clearInterval(intervalId);
+                    }
+                  }, 500);
+
+                  window.addEventListener('load', fillFormInputs);
                 })();
               </script>
 
