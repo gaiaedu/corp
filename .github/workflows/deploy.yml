@@ -42,8 +42,8 @@ jobs:
         env:
           SITE_URL: https://corp.gaia-edu.co.jp
           BASE_PATH: /
-          MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN || 'gaiacorp' }}
-          MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY || '5U6rfv2J5lkuOFfYeKGYZ7O7NW2AJgYT8e4C' }}
+          MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN }}
+          MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
           PUBLIC_BOWNOW_PRODUCT_QUERY_KEY: ${{ secrets.PUBLIC_BOWNOW_PRODUCT_QUERY_KEY || '_bq_text_field-20261119135348948~' }}
         run: npm run build
 
