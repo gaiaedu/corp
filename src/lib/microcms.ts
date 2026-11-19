@@ -373,9 +373,9 @@ const API_KEY = import.meta.env.MICROCMS_API_KEY;
 export function isMicroCMSConfigured(): boolean {
   return Boolean(
     SERVICE_DOMAIN &&
-      API_KEY &&
-      SERVICE_DOMAIN !== 'your-service-domain' &&
-      API_KEY !== 'your-api-key'
+    API_KEY &&
+    SERVICE_DOMAIN !== 'your-service-domain' &&
+    API_KEY !== 'your-api-key'
   );
 }
 
@@ -427,32 +427,23 @@ async function fetchAllFromMicroCMS<T>(
 }
 
 /**
- * microCMS 側のデータと旧本番DBデータをマージするヘルパー
- * - microCMS に全データ移行後は microCMS 側のデータが優先され、
- * - 移行途中または新規記事だけ microCMS に入れた場合でも、旧DBの既存コンテンツが消えずに共存・上書き更新される
+ * microCMS 側のデータと旧本番DBフォールバックデータの解決ヘルパー
+ * - microCMS から正常に取得できた場合（配列が返った場合、0件含む）は microCMS 側を唯一の正とする
+ *   （これにより、microCMS 側で削除・非公開化したコンテンツがローカルデータから復活するのを防ぐ）
+ * - ローカル開発で環境変数未設定時や、API 通信障害で null が返った場合のみ旧データへフォールバックする
  */
-function mergeWithLegacy<T extends MicroCMSBaseContent>(cmsItems: T[] | null, legacyItems: T[]): T[] {
-  if (!cmsItems || cmsItems.length === 0) {
-    return [...legacyItems];
+function resolveWithFallback<T extends MicroCMSBaseContent>(cmsItems: T[] | null, legacyItems: T[]): T[] {
+  if (cmsItems !== null) {
+    return [...cmsItems];
   }
-  const cmsSlugSet = new Set<string>();
-  for (const item of cmsItems) {
-    cmsSlugSet.add(item.id);
-    if (typeof item.old_id === 'number') {
-      cmsSlugSet.add(String(item.old_id));
-    }
-  }
-  const remainingLegacy = legacyItems.filter(
-    (leg) => !cmsSlugSet.has(leg.id) && !(typeof leg.old_id === 'number' && cmsSlugSet.has(String(leg.old_id)))
-  );
-  return [...cmsItems, ...remainingLegacy];
+  return [...legacyItems];
 }
 
 /** ① スライダー一覧取得 */
 export async function getSliders(): Promise<SliderItem[]> {
   const items = await fetchAllFromMicroCMS<SliderItem>('sliders', { orders: 'order,publishedAt' });
-  const merged = mergeWithLegacy(items, LEGACY_SLIDERS);
-  return merged.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
+  const resolved = resolveWithFallback(items, LEGACY_SLIDERS);
+  return resolved.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
 }
 
 /** ② お知らせ一覧取得 */
@@ -460,8 +451,8 @@ export async function getInformationList(): Promise<InformationItem[]> {
   const items = await fetchAllFromMicroCMS<InformationItem>('information', {
     orders: '-published_date,-publishedAt',
   });
-  const merged = mergeWithLegacy(items, LEGACY_INFORMATION);
-  return merged.sort((a, b) => {
+  const resolved = resolveWithFallback(items, LEGACY_INFORMATION);
+  return resolved.sort((a, b) => {
     const dateA = a.published_date || a.publishedAt || '';
     const dateB = b.published_date || b.publishedAt || '';
     return dateB.localeCompare(dateA);
@@ -473,8 +464,8 @@ export async function getProductCategories(): Promise<ProductCategoryItem[]> {
   const items = await fetchAllFromMicroCMS<ProductCategoryItem>('product_categories', {
     orders: 'order,publishedAt',
   });
-  const merged = mergeWithLegacy(items, LEGACY_CATEGORIES);
-  return merged.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
+  const resolved = resolveWithFallback(items, LEGACY_CATEGORIES);
+  return resolved.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
 }
 
 /** ④ 製品一覧取得 */
@@ -483,8 +474,8 @@ export async function getProducts(): Promise<ProductItem[]> {
     orders: 'order,publishedAt',
     depth: '2',
   });
-  const merged = mergeWithLegacy(items, LEGACY_PRODUCTS);
-  return merged.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
+  const resolved = resolveWithFallback(items, LEGACY_PRODUCTS);
+  return resolved.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
 }
 
 /** ⑤ 導入事例一覧取得 */
@@ -493,7 +484,7 @@ export async function getWorks(): Promise<WorkItem[]> {
     orders: 'order,-publishedAt',
     depth: '2',
   });
-  const merged = mergeWithLegacy(items, LEGACY_WORKS);
-  return merged.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
+  const resolved = resolveWithFallback(items, LEGACY_WORKS);
+  return resolved.sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999));
 }
 

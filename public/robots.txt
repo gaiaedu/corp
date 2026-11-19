@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /inquiry/thanks/
+Disallow: /inquiry/done/
+
+Sitemap: https://corp.gaia-edu.co.jp/sitemap.xml
+
